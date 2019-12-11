@@ -1,4 +1,4 @@
-package com.plasmadev.captiondad.cardview_food2;
+package br.com.SandroDiego.MenuPrincipalEstoque;
 
 import org.junit.Test;
 

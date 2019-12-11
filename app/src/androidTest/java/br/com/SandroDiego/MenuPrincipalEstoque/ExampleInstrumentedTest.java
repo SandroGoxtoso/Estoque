@@ -1,4 +1,4 @@
-package com.plasmadev.captiondad.cardview_food2;
+package br.com.SandroDiego.MenuPrincipalEstoque;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
