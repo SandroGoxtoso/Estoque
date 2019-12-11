@@ -29,6 +29,7 @@ public class Carrinho extends AppCompatActivity {
         listaProdutos.add(new Produto("Refrigerante Pepsi 350 ml", 5.50f, somaProduto(), "6", R.mipmap.pepsi));
         listaProdutos.add(new Produto("Refrigerante Guaraná 350 ml", 4.50f, somaProduto(), "8", R.mipmap.guarana));
         listaProdutos.add(new Produto("Fusion Energy Drink 250 ml", 7.50f, somaProduto(), "3", R.mipmap.fusion));
+        listaProdutos.add(new Produto("Cerveja Bohemia Pilsen 350ml", 3.50f, somaProduto(), "2", R.mipmap.bohemia));
 
         TextView tv_valorTotalPedido = findViewById(R.id.tv_valorTotalPedido);
         tv_valorTotalPedido.setText(String.valueOf(somaTotal()));
