@@ -29,8 +29,8 @@
                     android:id="@+id/tv_nomeProduto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:padding="10dp"
                     android:text="Refrigerante Pepsi 275 ml"
                     android:textColor="#4AB455"
                     android:textSize="18dp" />
@@ -39,6 +39,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -101,6 +103,16 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_codigoBarra"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:paddingLeft="11dp"
+                    android:text="código de barra"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

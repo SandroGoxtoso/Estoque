@@ -1,9 +1,11 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,26 +38,20 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
         holder.tv_nomeProduto.setText(listaProdutos.get(position).getNomeProduto());
         holder.tv_valorProduto.setText("R$ " + String.valueOf(listaProdutos.get(position).getSomaProduto()));
         holder.tv_qtdProduto.setText(listaProdutos.get(position).getQtdProduto());
+        holder.tv_codigoBarra.setText("Código de barra: " + listaProdutos.get(position).getCodigoBarra());
         holder.img_imagemProduto.setImageResource(listaProdutos.get(position).getImgProduto());
 
         holder.cv_itensPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(context, CarrinhoProduto.class);
-
-                // Salva os valores das intentes por indice na Tela do Carrinho
+                Intent intent = new Intent(context, AddProdutosCarrinho.class);
                 intent.putExtra("NomeProduto", listaProdutos.get(position).getNomeProduto());
                 intent.putExtra("ValorProduto", listaProdutos.get(position).getValorProduto());
+                intent.putExtra("ValorUnitarioProduto", listaProdutos.get(position).getValorProduto());
                 intent.putExtra("QtdProduto", listaProdutos.get(position).getQtdProduto());
                 intent.putExtra("ImagemProduto", listaProdutos.get(position).getImgProduto());
-                // Salva os valores das intentes por indice na Tela Detalhes Jogos
-                intent.putExtra("NomeProduto", listaProdutos.get(position).getNomeProduto());
-                intent.putExtra("ValorProduto", listaProdutos.get(position).getValorProduto());
-                intent.putExtra("QtdProduto", listaProdutos.get(position).getQtdProduto());
-                intent.putExtra("ImagemProduto", listaProdutos.get(position).getImgProduto());
-
-                // Inicia a activity
-                context.startActivity(intent);*/
+                intent.putExtra("CodigoBarra", listaProdutos.get(position).getCodigoBarra());
+                context.startActivity(intent);
             }
         });
     }
@@ -64,10 +60,9 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
     public int getItemCount() {
         return listaProdutos.size();
     }
-
     // Ao extender a classe asbtrata RecyclerView.ViewHolder é nescessário implementar seu método abstrato MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_nomeProduto, tv_valorProduto, tv_qtdProduto, tv_valorTotalProduto;
+        TextView tv_nomeProduto, tv_valorProduto, tv_valorUnitarioProduto, tv_qtdProduto, tv_valorTotalProduto, tv_codigoBarra;
         ImageView img_imagemProduto;
         CardView cv_itensPedido;
 
@@ -77,10 +72,12 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
             // Atribuição
             tv_nomeProduto = itemView.findViewById(R.id.tv_nomeProduto);
             tv_valorProduto = itemView.findViewById(R.id.tv_valorProduto);
+            tv_valorUnitarioProduto = itemView.findViewById(R.id.tv_valorUnitarioProduto);
             tv_qtdProduto = itemView.findViewById(R.id.tv_qtdProduto);
             img_imagemProduto = itemView.findViewById(R.id.img_imagemProduto);
             cv_itensPedido = itemView.findViewById(R.id.cv_item_produto);
             tv_valorTotalProduto = itemView.findViewById(R.id.tv_valorTotalPedido);
+            tv_codigoBarra = itemView.findViewById(R.id.tv_codigoBarra);
         }
     }
 }

@@ -1,22 +1,19 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
-import android.animation.ArgbEvaluator;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho extends AppCompatActivity {
 
     List<Produto> listaProdutos;
-    ArgbEvaluator argbEvaluator = new ArgbEvaluator();
-    DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +23,11 @@ public class Carrinho extends AppCompatActivity {
 
         listaProdutos = new ArrayList<>();
 
-        listaProdutos.add(new Produto("Refrigerante Pepsi 350 ml", 5.50f, somaProduto(), "6", R.mipmap.pepsi));
-        listaProdutos.add(new Produto("Refrigerante Guaraná 350 ml", 4.50f, somaProduto(), "8", R.mipmap.guarana));
-        listaProdutos.add(new Produto("Fusion Energy Drink 250 ml", 6.50f, somaProduto(), "3", R.mipmap.fusion));
-        listaProdutos.add(new Produto("Cerveja Bohemia Pilsen 350ml", 3.50f, somaProduto(), "2", R.mipmap.bohemia));
+        listaProdutos.add(new Produto("Refrigerante Pepsi 350 ml", 5.50f, somaProduto(), "6", "01234-12345-53212-23412", R.mipmap.pepsi));
+        listaProdutos.add(new Produto("Refrigerante Guaraná 350 ml", 4.50f, somaProduto(), "8", "12345-01234-23412-53212", R.mipmap.guarana));
+        listaProdutos.add(new Produto("Fusion Energy Drink 250 ml", 6.50f, somaProduto(), "3", "23412-53212-01234-12345", R.mipmap.fusion));
+        listaProdutos.add(new Produto("Cerveja Bohemia Pilsen 350ml", 3.50f, somaProduto(), "2", "53212-23412-12345-01234", R.mipmap.bohemia));
+        listaProdutos.add(new Produto("Cerveja Bohemia Long 600ml", 6.00f, somaProduto(), "5", "82214-26412-12647-11230", R.mipmap.bohemia_long_neck));
 
         TextView tv_valorTotalPedido = findViewById(R.id.tv_valorTotalPedido);
         tv_valorTotalPedido.setText(String.valueOf(somaTotal()));

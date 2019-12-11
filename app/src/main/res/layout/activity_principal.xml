@@ -28,14 +28,17 @@
                 android:src="@mipmap/user_logo" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/et_barraPesquisa"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="6dp"
                 android:background="@drawable/border_full"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:hint="Pesquise pelo produto..."
                 android:inputType="textPersonName"
                 android:paddingLeft="20dp"
+                android:selectAllOnFocus="false"
                 android:textSize="14dp" />
 
         </LinearLayout>
