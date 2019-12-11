@@ -9,7 +9,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(String nomeProduto, Float valorProduto, Float somaProduto, String qtdProduto, int imgProduto) {
+    public Produto(String nomeProduto, float valorProduto, float somaProduto, String qtdProduto, int imgProduto) {
         this.nomeProduto = nomeProduto;
         this.valorProduto = valorProduto;
         this.qtdProduto = qtdProduto;
@@ -33,11 +33,11 @@ public class Produto {
         this.qtdProduto = qtdProduto;
     }
 
-    public Float getValorProduto() {
+    public float getValorProduto() {
         return valorProduto;
     }
 
-    public void setValorProduto(Float valorProduto) {
+    public void setValorProduto(float valorProduto) {
         this.valorProduto = valorProduto;
     }
 
@@ -49,12 +49,12 @@ public class Produto {
         this.imgProduto = imgProduto;
     }
 
-    public Float getSomaProduto() {
+    public float getSomaProduto() {
         somaProduto = valorProduto * Float.valueOf(qtdProduto);
         return somaProduto;
     }
 
-    public void setSomaProduto(Float somaProduto) {
+    public void setSomaProduto(float somaProduto) {
         this.somaProduto = somaProduto;
     }
 }
