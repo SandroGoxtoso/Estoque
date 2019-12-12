@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,9 +33,8 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-
         holder.tv_nomeProduto.setText(listaProdutos.get(position).getNomeProduto());
-        holder.tv_valorProduto.setText("R$ " + String.valueOf(listaProdutos.get(position).getSomaProduto()));
+        holder.tv_valorProduto.setText("R$ " + listaProdutos.get(position).decimalFormat(listaProdutos.get(position).getSomaProduto()));
         holder.tv_qtdProduto.setText(listaProdutos.get(position).getQtdProduto());
         holder.tv_codigoBarra.setText("Código de barra: " + listaProdutos.get(position).getCodigoBarra());
         holder.img_imagemProduto.setImageResource(listaProdutos.get(position).getImgProduto());
@@ -60,6 +58,7 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
     public int getItemCount() {
         return listaProdutos.size();
     }
+
     // Ao extender a classe asbtrata RecyclerView.ViewHolder é nescessário implementar seu método abstrato MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nomeProduto, tv_valorProduto, tv_valorUnitarioProduto, tv_qtdProduto, tv_valorTotalProduto, tv_codigoBarra;

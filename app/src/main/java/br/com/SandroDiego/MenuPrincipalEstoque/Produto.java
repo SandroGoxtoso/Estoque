@@ -1,5 +1,7 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
+import java.text.DecimalFormat;
+
 public class Produto {
 
     private String nomeProduto, qtdProduto, codigoBarra;
@@ -16,6 +18,12 @@ public class Produto {
         this.imgProduto = imgProduto;
         this.codigoBarra = codigoBarra;
         this.somaProduto = somaProduto;
+    }
+
+    public static String decimalFormat(Float num) {
+        DecimalFormat df = new DecimalFormat();
+        df.applyPattern("#,##0.00");
+        return df.format(num);
     }
 
     public String getNomeProduto() {
