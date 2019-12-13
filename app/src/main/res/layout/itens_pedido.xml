@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cv_item_produto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="122dp"
     android:layout_margin="5dp"
     android:background="#F5F1F1F1"
@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -35,24 +35,33 @@
                     android:textColor="#4AB455"
                     android:textSize="16dp" />
 
+                <TextView
+                    android:id="@+id/tv_codigoBarra"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:paddingLeft="10dp"
+                    android:text="código de barra"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_valorProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_marginTop="11dp"
                             android:fontFamily="@font/roboto_bold"
                             android:text="R$ 60,00"
                             android:textColor="#6A90B5"
@@ -65,21 +74,20 @@
                             android:fontFamily="@font/roboto_regular"
                             android:text="Valor"
                             android:textColor="#DF6A90B5"
-                            android:textSize="14dp" />
+                            android:textSize="12dp" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="16dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:src="@drawable/split" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -87,6 +95,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginTop="11dp"
                             android:fontFamily="@font/roboto_bold"
                             android:text="12"
                             android:textColor="#6A90B5"
@@ -98,36 +107,27 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/roboto_regular"
                             android:text="Quantidade"
-                            android:textColor="#EE6A90B5"
-                            android:textSize="14dp" />
+                            android:textColor="#DF6A90B5"
+                            android:textSize="12dp" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="125dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="                         " />
+
+                    <ImageView
+                        android:id="@+id/img_imagemProduto"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/pepsi_lata" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_codigoBarra"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="bottom"
-                    android:paddingLeft="11dp"
-                    android:text="código de barra"
-                    android:textSize="10dp"
-                    android:textStyle="bold" />
-
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/img_imagemProduto"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/pepsi_lata" />
-            </RelativeLayout>
 
         </LinearLayout>
 
