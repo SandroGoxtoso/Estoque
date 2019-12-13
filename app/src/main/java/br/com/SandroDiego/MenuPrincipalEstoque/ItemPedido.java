@@ -50,7 +50,6 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
                 intent.putExtra("ImagemProduto", listaProdutos.get(position).getImgProduto());
                 intent.putExtra("CodigoBarra", listaProdutos.get(position).getCodigoBarra());
                 context.startActivity(intent);
-
             }
         });
     }
