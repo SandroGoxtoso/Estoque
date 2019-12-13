@@ -1,5 +1,6 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddProdutosCarrinho extends AppCompatActivity {
+public class AddProdutosActivity extends AppCompatActivity {
 
     private TextView tv_nomeProduto, tv_valorUnitarioProduto, tv_qtdProduto;
     private EditText et_codigoBarra;
@@ -39,7 +40,7 @@ public class AddProdutosCarrinho extends AppCompatActivity {
 
         // Atribuição de valores
         tv_nomeProduto.setText(nomeProduto);
-        tv_valorUnitarioProduto.setText(String.valueOf("R$ " + valorUnitarioProduto + " unidade"));
+        tv_valorUnitarioProduto.setText("R$ " + valorUnitarioProduto + " uni.");
         et_codigoBarra.setHint(codigoBarra);
         tv_qtdProduto.setText(qtdProduto);
         img_imagemProduto.setImageResource(imagemProduto);
@@ -48,4 +49,5 @@ public class AddProdutosCarrinho extends AppCompatActivity {
     public void fecharActivity(View view) {
         this.finish();
     }
+
 }

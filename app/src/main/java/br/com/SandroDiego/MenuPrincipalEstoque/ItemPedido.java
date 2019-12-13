@@ -42,7 +42,7 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
         holder.cv_itensPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, AddProdutosCarrinho.class);
+                Intent intent = new Intent(context, AddProdutosActivity.class);
                 intent.putExtra("NomeProduto", listaProdutos.get(position).getNomeProduto());
                 intent.putExtra("ValorProduto", listaProdutos.get(position).getValorProduto());
                 intent.putExtra("ValorUnitarioProduto", listaProdutos.get(position).getValorProduto());

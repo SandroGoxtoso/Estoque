@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F5F1F1F1"
     android:orientation="vertical"
-    tools:context="br.com.SandroDiego.MenuPrincipalEstoque.Carrinho">
+    tools:context="br.com.SandroDiego.MenuPrincipalEstoque.CarrinhoActivity">
 
     <LinearLayout
         android:id="@+id/ll_search_bar"
@@ -193,16 +193,41 @@
 
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/btn_finalizaPedido"
-                            android:layout_width="150dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/button_rounded"
-                            android:text="Finalizar pedido"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12dp"
-                            android:textStyle="bold" />
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btn_finalizaPedido"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/button_rounded"
+                                android:text="Finalizar pedido"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="                         " />
+
+                            <Button
+                                android:id="@+id/btn_adicionarProduto"
+                                android:layout_width="105dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_rounded"
+                                android:text="Add Produto"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
 
                     </LinearLayout>
