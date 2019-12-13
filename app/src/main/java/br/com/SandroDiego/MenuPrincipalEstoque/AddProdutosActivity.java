@@ -1,5 +1,7 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 public class AddProdutosActivity extends AppCompatActivity {
 
@@ -50,4 +53,15 @@ public class AddProdutosActivity extends AppCompatActivity {
         this.finish();
     }
 
+    public void notificacao(View view) {
+        String mensagem = "Sucesso! Clique aqui para retornar ao seu carrinho!";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(AddProdutosActivity.this).setSmallIcon(R.drawable.ic_check_black_24dp).setContentTitle("Alteração de pedido").setContentText(mensagem).setAutoCancel(true);
+        Intent intent = new Intent(AddProdutosActivity.this, CarrinhoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("Mensagem", mensagem);
+        PendingIntent pendingIntent = PendingIntent.getActivity(AddProdutosActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
+    }
 }

@@ -167,6 +167,7 @@
         android:layout_marginTop="63dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/button_rounded"
+        android:onClick="notificacao"
         android:text="Alterar"
         android:textSize="10dp" />
 

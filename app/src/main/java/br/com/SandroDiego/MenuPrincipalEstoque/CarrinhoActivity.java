@@ -1,9 +1,15 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +20,12 @@ import java.util.List;
 public class CarrinhoActivity extends AppCompatActivity {
 
     List<Produto> listaProdutos;
+
+    public static String decimalFormat(Float num) {
+        DecimalFormat df = new DecimalFormat();
+        df.applyPattern("#,##0.00");
+        return df.format(num);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +80,5 @@ public class CarrinhoActivity extends AppCompatActivity {
             somaProduto = listaProdutos.get(n).getValorProduto() * Float.valueOf(listaProdutos.get(n).getQtdProduto());
         }
         return somaProduto;
-    }
-
-    public static String decimalFormat(Float num) {
-        DecimalFormat df = new DecimalFormat();
-        df.applyPattern("#,##0.00");
-        return df.format(num);
     }
 }

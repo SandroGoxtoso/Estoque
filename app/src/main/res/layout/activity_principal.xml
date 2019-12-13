@@ -204,6 +204,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
                                 android:background="@drawable/button_rounded"
+                                android:onClick="notificacao"
                                 android:text="Finalizar pedido"
                                 android:textColor="#FFFFFF"
                                 android:textSize="12dp"
