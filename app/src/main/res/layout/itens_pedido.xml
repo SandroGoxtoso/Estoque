@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -33,7 +33,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="Refrigerante Pepsi 275 ml"
                     android:textColor="#4AB455"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:text="R$ 60,00"
                             android:textColor="#6A90B5"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:text="12"
                             android:textColor="#6A90B5"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -117,14 +117,15 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/img_imagemProduto"
-                    android:layout_width="match_parent"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:scaleType="fitCenter"
                     android:src="@mipmap/pepsi_lata" />
             </RelativeLayout>
 
