@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "br.com.sandro.menuprincipal"
+        applicationId "br.com.SandroDiego.MenuPrincipalEstoque"
         minSdkVersion 22
         targetSdkVersion 26
         versionCode 1
