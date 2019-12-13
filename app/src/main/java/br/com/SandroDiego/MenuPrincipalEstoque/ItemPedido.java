@@ -15,8 +15,8 @@ import java.util.List;
 
 public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
 
+    private static List<Produto> listaProdutos;
     private Context context;
-    private List<Produto> listaProdutos;
 
     public ItemPedido(Context context, List<Produto> listaJogos) {
         this.context = context;
@@ -50,6 +50,7 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
                 intent.putExtra("ImagemProduto", listaProdutos.get(position).getImgProduto());
                 intent.putExtra("CodigoBarra", listaProdutos.get(position).getCodigoBarra());
                 context.startActivity(intent);
+
             }
         });
     }
@@ -77,6 +78,9 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
             cv_itensPedido = itemView.findViewById(R.id.cv_item_produto);
             tv_valorTotalProduto = itemView.findViewById(R.id.tv_valorTotalPedido);
             tv_codigoBarra = itemView.findViewById(R.id.tv_codigoBarra);
+            cv_itensPedido.setTranslationX(800);
+            cv_itensPedido.setAlpha(0);
+            cv_itensPedido.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();
         }
     }
 }

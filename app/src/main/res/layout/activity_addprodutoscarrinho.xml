@@ -10,7 +10,7 @@
     android:paddingTop="3dp">
 
     <ImageView
-        android:id="@+id/iv_fecharActivity"
+        android:id="@+id/btn_voltar"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:onClick="fecharActivity"
@@ -47,7 +47,7 @@
         android:layout_height="25dp"
         android:layout_gravity="right"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="55dp"
+        android:layout_marginRight="57dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/button_rounded"
         android:text="Ler código de barra"
@@ -112,7 +112,7 @@
                     android:text="              " />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btn_remover"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
@@ -136,7 +136,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btn_adicionar"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
@@ -159,7 +159,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btn_alterarPedido"
+        android:id="@+id/btn_alterar"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:layout_gravity="right"
