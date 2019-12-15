@@ -51,7 +51,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         listaProdutos.add(new Produto("Refrigerante Guaraná 350 ml", 4.50f, somaProduto(), "8", "12345-01234-23412-53212", R.mipmap.guarana_lata));
         listaProdutos.add(new Produto("Fusion Energy Drink 250 ml", 6.50f, somaProduto(), "3", "23412-53212-01234-12345", R.mipmap.fusion_lata));
         listaProdutos.add(new Produto("Cerveja Bohemia Pilsen 350ml", 3.55f, somaProduto(), "2", "53212-23412-12345-01234", R.mipmap.bohemia));
-        listaProdutos.add(new Produto("Cerveja Bohemia Long Neck 600ml", 6.00f, somaProduto(), "5", "82214-26412-12647-11230", R.mipmap.bohemia_long_neck));
+        listaProdutos.add(new Produto("Cerveja Bohemia LN 600ml", 6.00f, somaProduto(), "5", "82214-26412-12647-11230", R.mipmap.bohemia_long_neck));
         listaProdutos.add(new Produto("Refrigerante Sukita 350ml", 3.55f, somaProduto(), "12", "65745-43253-97865-75445", R.mipmap.sukita_lata));
 
         TextView tv_valorTotalPedido = findViewById(R.id.tv_valorTotalPedido);
@@ -101,8 +101,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         stb2 = AnimationUtils.loadAnimation(this, R.anim.stb2);
         userImage = findViewById(R.id.user_image);
         et_barraPesquisa = findViewById(R.id.et_barraPesquisa);
-        cv_totaPedido = findViewById(R.id.cv_total_pedido);
         tv_linha = findViewById(R.id.tv_linha);
+        cv_totaPedido = findViewById(R.id.cv_total_pedido);
         btn_finalizaPedido = findViewById(R.id.btn_finalizaPedido);
         btn_addProduto = findViewById(R.id.btn_adicionarProduto);
         ll_search_bar = findViewById(R.id.ll_search_bar);
@@ -118,13 +118,13 @@ public class CarrinhoActivity extends AppCompatActivity {
         et_barraPesquisa.setAlpha(0);
         et_barraPesquisa.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(800).start();
 
+        tv_linha.setTranslationY(400);
+        tv_linha.setAlpha(0);
+        tv_linha.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(900).start();
+
         cv_totaPedido.setTranslationY(400);
         cv_totaPedido.setAlpha(0);
         cv_totaPedido.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1200).start();
-
-        tv_linha.setTranslationY(400);
-        tv_linha.setAlpha(0);
-        tv_linha.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1200).start();
 
         btn_finalizaPedido.setTranslationY(400);
         btn_finalizaPedido.setAlpha(0);

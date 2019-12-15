@@ -13,26 +13,28 @@
         android:layout_height="match_parent"
         android:background="#F5F1F1F1"
         android:contentDescription="TODO"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/background" />
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="88dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivSplash"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/logo" />
+        app:layout_constraintVertical_bias="0.015"
+        app:srcCompat="@mipmap/logo1" />
 
     <TextView
         android:id="@+id/ivSubtitle2"
@@ -42,13 +44,13 @@
         android:lineSpacingExtra="8dp"
         android:text="O sistema de gerenciamento de estoque mais completo do mercado."
         android:textAlignment="center"
-        android:textColor="#575757"
+        android:textColor="#ACABAB"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSubtitle"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <TextView
         android:id="@+id/ivSubtitle3"
@@ -58,14 +60,14 @@
         android:lineSpacingExtra="8dp"
         android:text="Começe agora mesmo!"
         android:textAlignment="viewStart"
-        android:textColor="#575757"
+        android:textColor="#ACABAB"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.89" />
 
     <TextView
         android:id="@+id/ivSubtitle"
@@ -76,7 +78,7 @@
         android:lineSpacingExtra="8dp"
         android:text="Bem-Vindo ao Estock"
         android:textAlignment="viewStart"
-        android:textColor="#575757"
+        android:textColor="#FFFFFF"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +93,7 @@
         android:lineSpacingExtra="8dp"
         android:onClick="entrarClick"
         android:text="Iniciar"
-        android:textColor="#575757"
+        android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ivSplash"
@@ -99,13 +101,12 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSubtitle3"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintVertical_bias="0.17000002" />
 
     <ImageView
         android:id="@+id/ivBtn2"
         android:layout_width="39dp"
         android:layout_height="42dp"
-        android:layout_marginTop="2dp"
         android:onClick="entrarClick"
         android:rotation="180"
         android:scaleType="fitCenter"

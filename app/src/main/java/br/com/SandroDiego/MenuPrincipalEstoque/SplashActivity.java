@@ -35,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
         ivSplash = findViewById(R.id.ivSplash);
         ivLogo = findViewById(R.id.ivLogo);
 
-        ivSplash.startAnimation(smalltobig);
         ivLogo.startAnimation(smalltobig);
 
         ivLogo.setTranslationX(1000);
