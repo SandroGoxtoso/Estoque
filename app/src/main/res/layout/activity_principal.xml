@@ -32,15 +32,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="6dp"
-                android:background="@drawable/border_full"
+                android:background="@drawable/border_search_box"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="Pesquise pelo produto..."
                 android:inputType="textPersonName"
                 android:paddingLeft="20dp"
                 android:selectAllOnFocus="false"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
+                android:textColor="#B2B5C2"
+                android:textColorHint="#B2B5C2"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="5dp"
+            app:cardBackgroundColor="#3a3d46"
             app:cardCornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +133,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:padding="5dp"
                             android:text="Total do pedido"
-                            android:textColor="#575757"
+                            android:textColor="#B2B5C2"
                             android:textSize="16dp" />
 
                         <LinearLayout
@@ -153,14 +154,20 @@
                                     android:layout_gravity="left"
                                     android:fontFamily="@font/roboto_regular"
                                     android:text="Qtd. Total"
-                                    android:textColor="#575757"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="#B2B5C2"
                                     android:textSize="12dp" />
 
                                 <TextView
-                                    android:id="@+id/textView7"
+                                    android:id="@+id/tv_linha3"
                                     android:layout_width="match_parent"
-                                    android:layout_height="5dp"
-                                    android:background="@drawable/border_bottom" />
+                                    android:layout_height="2dp"
+                                    android:background="@drawable/border_top"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ll_itens_pedido"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/ll_itens_pedido"
+                                    app:layout_constraintVertical_bias="0.0" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -168,7 +175,7 @@
                                     android:layout_gravity="left"
                                     android:fontFamily="@font/roboto_regular"
                                     android:text="Valor Total"
-                                    android:textColor="#575757"
+                                    android:textColor="#B2B5C2"
                                     android:textSize="12dp" />
 
                             </LinearLayout>
@@ -187,14 +194,19 @@
                                     android:fontFamily="@font/roboto_bold"
                                     android:gravity="end"
                                     android:text="22"
-                                    android:textColor="#575757"
+                                    android:textColor="#B2B5C2"
                                     android:textSize="12dp" />
 
                                 <TextView
-                                    android:id="@+id/textView9"
+                                    android:id="@+id/tv_linha4"
                                     android:layout_width="match_parent"
-                                    android:layout_height="5dp"
-                                    android:background="@drawable/border_bottom" />
+                                    android:layout_height="2dp"
+                                    android:background="@drawable/border_top"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ll_itens_pedido"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/ll_itens_pedido"
+                                    app:layout_constraintVertical_bias="0.0" />
 
                                 <TextView
                                     android:id="@+id/tv_valorTotalPedido"
@@ -204,7 +216,7 @@
                                     android:fontFamily="@font/roboto_bold"
                                     android:gravity="end"
                                     android:text="R$ 125,00"
-                                    android:textColor="#575757"
+                                    android:textColor="#B2B5C2"
                                     android:textSize="12dp" />
 
                             </LinearLayout>
@@ -225,7 +237,7 @@
                                 android:background="@drawable/button_ok"
                                 android:fontFamily="@font/roboto_bold"
                                 android:text="Finalizar pedido"
-                                android:textColor="#FFFFFF"
+                                android:textColor="#24262B"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
                                 android:typeface="serif" />
@@ -246,7 +258,7 @@
                                 android:background="@drawable/button_ok"
                                 android:fontFamily="@font/roboto_bold"
                                 android:text="Add Produto"
-                                android:textColor="#FFFFFF"
+                                android:textColor="#24262B"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
                                 android:typeface="serif" />

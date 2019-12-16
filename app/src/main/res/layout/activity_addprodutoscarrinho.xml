@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3a3d46"
@@ -24,15 +23,17 @@
 
     <ImageView
         android:id="@+id/img_imagemProduto"
-        android:layout_width="250dp"
+        android:layout_width="255dp"
         android:layout_height="250dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/border_full_2"
         android:padding="15dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/bohemia_long_neck" />
 
     <EditText
         android:id="@+id/et_codigoBarra"
@@ -73,14 +74,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        app:cardBackgroundColor="#24262B"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_codigoBarra"
-        app:layout_constraintVertical_bias="0.309"
-        >
+        app:layout_constraintVertical_bias="0.309">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -103,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:text="TextView"
+                    android:textColor="#B2B5C2"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -112,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:text="TextView"
-                    android:textColor="#9E9B9B"
+                    android:textColor="#B2B5C2"
                     android:textColorHint="#FFFFFF"
                     android:textSize="14dp"
                     android:textStyle="bold" />
@@ -145,8 +147,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/button_rounded_red"
+                    android:gravity="center"
                     android:text="-"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#24262B"
                     android:textSize="18dp" />
 
                 <TextView
@@ -160,6 +163,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:text="0"
                     android:textAlignment="center"
+                    android:textColor="#797C8F"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -170,8 +174,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/button_rounded_green"
+                    android:gravity="center"
                     android:text="+"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#24262B"
                     android:textSize="18dp" />
 
                 <TextView
@@ -196,14 +201,12 @@
         android:onClick="notificacao"
         android:scaleType="fitCenter"
         android:text="Alterar"
-        android:textColor="#F8F3F3"
+        android:textColor="#24262B"
         android:textSize="12dp"
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_item_produto"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
