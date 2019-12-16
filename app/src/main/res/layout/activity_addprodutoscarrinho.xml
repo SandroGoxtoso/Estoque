@@ -13,13 +13,13 @@
         android:layout_margin="5dp"
         android:onClick="fecharActivity"
         android:scaleType="fitCenter"
-        android:src="@mipmap/arrow_left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
     <ImageView
         android:id="@+id/img_imagemProduto"
@@ -56,13 +56,16 @@
 
     <Button
         android:id="@+id/btn_lerCodigoBarra"
-        android:layout_width="135dp"
-        android:layout_height="30dp"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@drawable/button_rounded"
+        android:background="@drawable/border_full_3"
+        android:drawableRight="@drawable/ic_settings_cell_black_24dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Ler código de barra"
+        android:textColor="#7A8391"
         android:textSize="10dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -193,15 +196,16 @@
 
     <Button
         android:id="@+id/btn_alterar"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/button_ok"
+        android:background="@drawable/border_full_3"
+        android:drawableRight="@drawable/ic_check_black_24dp"
         android:fontFamily="@font/roboto_bold"
         android:onClick="notificacao"
         android:scaleType="fitCenter"
         android:text="Alterar"
-        android:textColor="#24262B"
+        android:textColor="#7A8391"
         android:textSize="12dp"
         android:textStyle="bold"
         android:typeface="serif"
