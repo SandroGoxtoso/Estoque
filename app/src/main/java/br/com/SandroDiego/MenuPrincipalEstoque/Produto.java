@@ -4,14 +4,14 @@ import java.text.DecimalFormat;
 
 public class Produto {
 
-    private String nomeProduto, qtdProduto, codigoBarra;
+    private String nomeProduto, codigoBarra;
     private Float valorProduto, somaProduto;
-    private int imgProduto;
+    private int imgProduto, qtdProduto;
 
     public Produto() {
     }
 
-    public Produto(String nomeProduto, float valorProduto, float somaProduto, String qtdProduto, String codigoBarra, int imgProduto) {
+    public Produto(String nomeProduto, float valorProduto, float somaProduto, int qtdProduto, String codigoBarra, int imgProduto) {
         this.nomeProduto = nomeProduto;
         this.valorProduto = valorProduto;
         this.qtdProduto = qtdProduto;
@@ -34,11 +34,11 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public String getQtdProduto() {
+    public int getQtdProduto() {
         return qtdProduto;
     }
 
-    public void setQtdProduto(String qtdProduto) {
+    public void setQtdProduto(int qtdProduto) {
         this.qtdProduto = qtdProduto;
     }
 
@@ -63,7 +63,7 @@ public class Produto {
     }
 
     public float getSomaProduto() {
-        somaProduto = valorProduto * Float.valueOf(qtdProduto);
+        somaProduto = valorProduto * qtdProduto;
         return somaProduto;
     }
 

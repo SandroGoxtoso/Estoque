@@ -35,7 +35,7 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.tv_nomeProduto.setText(listaProdutos.get(position).getNomeProduto());
         holder.tv_valorProduto.setText("R$ " + listaProdutos.get(position).decimalFormat(listaProdutos.get(position).getSomaProduto()));
-        holder.tv_qtdProduto.setText(listaProdutos.get(position).getQtdProduto());
+        holder.tv_qtdProduto.setText("" + listaProdutos.get(position).getQtdProduto());
         holder.tv_codigoBarra.setText("Código de barra: " + listaProdutos.get(position).getCodigoBarra());
         holder.img_imagemProduto.setImageResource(listaProdutos.get(position).getImgProduto());
 

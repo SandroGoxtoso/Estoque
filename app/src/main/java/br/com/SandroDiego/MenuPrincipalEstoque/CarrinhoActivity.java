@@ -47,12 +47,12 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         listaProdutos = new ArrayList<>();
 
-        listaProdutos.add(new Produto("Refrigerante Pepsi 350 ml", 5.55f, somaProduto(), "6", "01234-12345-53212-23412", R.mipmap.pepsi_lata));
-        listaProdutos.add(new Produto("Refrigerante Guaraná 350 ml", 4.50f, somaProduto(), "8", "12345-01234-23412-53212", R.mipmap.guarana_lata));
-        listaProdutos.add(new Produto("Fusion Energy Drink 250 ml", 6.50f, somaProduto(), "3", "23412-53212-01234-12345", R.mipmap.fusion_lata));
-        listaProdutos.add(new Produto("Cerveja Bohemia Pilsen 350ml", 3.55f, somaProduto(), "2", "53212-23412-12345-01234", R.mipmap.bohemia));
-        listaProdutos.add(new Produto("Cerveja Bohemia LN 600ml", 6.00f, somaProduto(), "5", "82214-26412-12647-11230", R.mipmap.bohemia_long_neck));
-        listaProdutos.add(new Produto("Refrigerante Sukita 350ml", 3.55f, somaProduto(), "12", "65745-43253-97865-75445", R.mipmap.sukita_lata));
+        listaProdutos.add(new Produto("Refrigerante Pepsi 350 ml", 5.55f, somaProduto(), 6, "01234-12345-53212-23412", R.mipmap.pepsi_lata));
+        listaProdutos.add(new Produto("Refrigerante Guaraná 350 ml", 4.50f, somaProduto(), 8, "12345-01234-23412-53212", R.mipmap.guarana_lata));
+        listaProdutos.add(new Produto("Fusion Energy Drink 250 ml", 6.50f, somaProduto(), 3, "23412-53212-01234-12345", R.mipmap.fusion_lata));
+        listaProdutos.add(new Produto("Cerveja Bohemia Pilsen 350ml", 3.55f, somaProduto(), 2, "53212-23412-12345-01234", R.mipmap.bohemia));
+        listaProdutos.add(new Produto("Cerveja Bohemia LN 600ml", 6.00f, somaProduto(), 5, "82214-26412-12647-11230", R.mipmap.bohemia_long_neck));
+        listaProdutos.add(new Produto("Refrigerante Sukita 350ml", 3.55f, somaProduto(), 12, "65745-43253-97865-75445", R.mipmap.sukita_lata));
 
         TextView tv_valorTotalPedido = findViewById(R.id.tv_valorTotalPedido);
         tv_valorTotalPedido.setText(String.valueOf("R$ " + decimalFormat(somaTotal())));
@@ -72,7 +72,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     public int somaQtd() {
         int somaQtd = 0;
         for (int n = 0; n < listaProdutos.size(); n++) {
-            somaQtd = somaQtd + Integer.valueOf(listaProdutos.get(n).getQtdProduto());
+            somaQtd = somaQtd + listaProdutos.get(n).getQtdProduto();
         }
         return somaQtd;
     }
@@ -90,7 +90,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     public float somaProduto() {
         float somaProduto = 0.00f;
         for (int n = 0; n < listaProdutos.size(); n++) {
-            somaProduto = listaProdutos.get(n).getValorProduto() * Float.valueOf(listaProdutos.get(n).getQtdProduto());
+            somaProduto = listaProdutos.get(n).getValorProduto() * listaProdutos.get(n).getQtdProduto();
         }
         return somaProduto;
     }

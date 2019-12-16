@@ -46,14 +46,14 @@ public class AddProdutosActivity extends AppCompatActivity {
         String nomeProduto = intent.getExtras().getString("NomeProduto");
         Float valorUnitarioProduto = intent.getExtras().getFloat("ValorUnitarioProduto");
         String codigoBarra = intent.getExtras().getString("CodigoBarra");
-        String qtdProduto = intent.getExtras().getString("QtdProduto");
+        int qtdProduto = intent.getExtras().getInt("QtdProduto");
         int imagemProduto = intent.getExtras().getInt("ImagemProduto");
 
         // Atribuição de valores
         tv_nomeProduto.setText(nomeProduto);
         tv_valorUnitarioProduto.setText("R$ " + valorUnitarioProduto + " uni.");
         et_codigoBarra.setHint(codigoBarra);
-        tv_qtdProduto.setText(qtdProduto);
+        tv_qtdProduto.setText("" + qtdProduto);
         img_imagemProduto.setImageResource(imagemProduto);
 
         iniciarAnimacao();
@@ -131,6 +131,20 @@ public class AddProdutosActivity extends AppCompatActivity {
         btn_alterar.setTranslationY(1000);
         btn_alterar.setAlpha(0);
         btn_alterar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1300).start();
+    }
+
+    public void adicionar(View view) {
+        Intent intent = getIntent();
+        int qtdProduto = intent.getExtras().getInt("QtdProduto");
+        int soma = qtdProduto + 1;
+        tv_qtdProduto.setText(soma + "");
+    }
+
+    public void remover(View view) {
+        Intent intent = getIntent();
+        int qtdProduto = intent.getExtras().getInt("QtdProduto");
+        int soma = qtdProduto - 1;
+        tv_qtdProduto.setText(soma + "");
     }
 
 }
