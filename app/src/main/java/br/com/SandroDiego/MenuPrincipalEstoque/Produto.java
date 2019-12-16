@@ -82,4 +82,5 @@ public class Produto {
     public void setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
     }
+
 }

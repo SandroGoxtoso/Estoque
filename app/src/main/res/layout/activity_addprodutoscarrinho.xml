@@ -1,68 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F1F1F1"
-    android:orientation="vertical"
-    android:paddingLeft="3dp"
-    android:paddingTop="3dp">
+    android:background="#3a3d46"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/btn_voltar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
         android:onClick="fecharActivity"
-        android:paddingLeft="10dp"
-        app:srcCompat="@mipmap/arrow_left" />
+        android:scaleType="fitCenter"
+        android:src="@mipmap/arrow_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/img_imagemProduto"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/border_full_2"
-        android:padding="15dp" />
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_codigoBarra"
         android:layout_width="255dp"
         android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:background="@drawable/border_full_2"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_full"
         android:ems="10"
         android:enabled="false"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:textSize="14dp" />
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_imagemProduto" />
 
     <Button
         android:id="@+id/btn_lerCodigoBarra"
         android:layout_width="135dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
+        android:layout_height="30dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/button_rounded"
         android:fontFamily="@font/roboto_regular"
         android:text="Ler código de barra"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_codigoBarra"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_item_produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_codigoBarra"
+        app:layout_constraintVertical_bias="0.309"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="10dp">
 
             <LinearLayout
@@ -90,7 +112,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:text="TextView"
-                    android:textSize="14dp" />
+                    android:textColor="#9E9B9B"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -163,16 +188,22 @@
 
     <Button
         android:id="@+id/btn_alterar"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_gravity="right"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/button_rounded"
-        android:fontFamily="@font/roboto_regular"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/button_ok"
+        android:fontFamily="@font/roboto_bold"
         android:onClick="notificacao"
+        android:scaleType="fitCenter"
         android:text="Alterar"
-        android:textSize="10dp" />
+        android:textColor="#F8F3F3"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_item_produto"
+        app:layout_constraintVertical_bias="1.0" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

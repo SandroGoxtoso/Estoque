@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -133,6 +134,6 @@ public class AddProdutosActivity extends AppCompatActivity {
         btn_alterar.setTranslationY(1000);
         btn_alterar.setAlpha(0);
         btn_alterar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1300).start();
-
     }
+
 }

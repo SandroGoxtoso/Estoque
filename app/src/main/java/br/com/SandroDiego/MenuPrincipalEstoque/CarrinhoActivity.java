@@ -27,7 +27,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     ImageView userImage;
     EditText et_barraPesquisa;
     CardView cv_totaPedido;
-    TextView tv_linha;
+    TextView tv_linha, tv_linha2;
     Button btn_finalizaPedido, btn_addProduto;
     LinearLayout ll_search_bar;
 
@@ -102,14 +102,19 @@ public class CarrinhoActivity extends AppCompatActivity {
         userImage = findViewById(R.id.user_image);
         et_barraPesquisa = findViewById(R.id.et_barraPesquisa);
         tv_linha = findViewById(R.id.tv_linha);
+        tv_linha2 = findViewById(R.id.tv_linha2);
         cv_totaPedido = findViewById(R.id.cv_total_pedido);
         btn_finalizaPedido = findViewById(R.id.btn_finalizaPedido);
         btn_addProduto = findViewById(R.id.btn_adicionarProduto);
         ll_search_bar = findViewById(R.id.ll_search_bar);
 
+        tv_linha2.setTranslationY(-400);
+        tv_linha2.setAlpha(0);
+        tv_linha2.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(100).start();
+
         ll_search_bar.setTranslationY(-400);
         ll_search_bar.setAlpha(0);
-        ll_search_bar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(100).start();
+        ll_search_bar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(200).start();
 
         userImage.setTranslationX(-400);
         userImage.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(800).start();

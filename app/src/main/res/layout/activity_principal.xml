@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F1F1F1"
+    android:background="#3a3d46"
     android:orientation="vertical"
     tools:context="br.com.SandroDiego.MenuPrincipalEstoque.CarrinhoActivity">
 
@@ -12,7 +12,7 @@
         android:id="@+id/ll_search_bar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/border_bottom"
+        android:background="#3a3d46"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -39,10 +39,23 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="20dp"
                 android:selectAllOnFocus="false"
-                android:textSize="14dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="12dp" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_linha2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/border_top"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_itens_pedido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_itens_pedido"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -65,6 +78,7 @@
                 android:id="@+id/rcv_itens_pedido"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#3a3d46"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
 
@@ -208,12 +222,13 @@
                                 android:layout_width="130dp"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
-                                android:background="@drawable/button_rounded"
-                                android:fontFamily="@font/roboto_regular"
+                                android:background="@drawable/button_ok"
+                                android:fontFamily="@font/roboto_bold"
                                 android:text="Finalizar pedido"
                                 android:textColor="#FFFFFF"
                                 android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:typeface="serif" />
 
                             <TextView
                                 android:id="@+id/textView"
@@ -228,12 +243,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/button_rounded"
-                                android:fontFamily="@font/roboto_regular"
+                                android:background="@drawable/button_ok"
+                                android:fontFamily="@font/roboto_bold"
                                 android:text="Add Produto"
                                 android:textColor="#FFFFFF"
                                 android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:typeface="serif" />
                         </LinearLayout>
 
 
