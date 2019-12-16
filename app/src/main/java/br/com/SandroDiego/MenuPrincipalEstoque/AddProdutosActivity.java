@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,8 +22,8 @@ public class AddProdutosActivity extends AppCompatActivity {
     Animation smalltobig, stb2;
     private TextView tv_nomeProduto, tv_valorUnitarioProduto, tv_qtdProduto;
     private EditText et_codigoBarra;
-    private ImageView img_imagemProduto, btn_voltar;
-    private Button btn_lerCodigoBarra, btn_adicionar, btn_remover, btn_alterar;
+    private ImageView img_imagemProduto, btn_voltar, btn_adicionar, btn_remover;
+    private Button btn_lerCodigoBarra, btn_alterar;
     private CardView cv_item_produto;
 
     @Override
@@ -95,41 +94,39 @@ public class AddProdutosActivity extends AppCompatActivity {
         cv_item_produto = findViewById(R.id.cv_item_produto);
 
         btn_voltar.setTranslationY(-200);
-        btn_voltar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(100).start();
+        btn_voltar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(300).start();
 
         img_imagemProduto.setTranslationY(-1200);
-        img_imagemProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(200).start();
+        img_imagemProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(500).start();
 
         et_codigoBarra.setTranslationY(-400);
         et_codigoBarra.setAlpha(0);
-        et_codigoBarra.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        et_codigoBarra.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(600).start();
 
         btn_lerCodigoBarra.setTranslationY(-100);
         btn_lerCodigoBarra.setAlpha(0);
-        btn_lerCodigoBarra.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(400).start();
+        btn_lerCodigoBarra.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
         cv_item_produto.setTranslationY(1000);
-        cv_item_produto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(600).start();
+        cv_item_produto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(800).start();
 
         tv_nomeProduto.setTranslationY(-200);
         tv_nomeProduto.setAlpha(0);
-        tv_nomeProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(800).start();
+        tv_nomeProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1000).start();
 
         tv_valorUnitarioProduto.setTranslationX(-200);
         tv_valorUnitarioProduto.setAlpha(0);
-        tv_valorUnitarioProduto.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
+        tv_valorUnitarioProduto.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1100).start();
 
         btn_remover.setTranslationX(-500);
-        btn_remover.setAlpha(0);
-        btn_remover.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1200).start();
+        btn_remover.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1300).start();
 
         btn_adicionar.setTranslationX(500);
-        btn_adicionar.setAlpha(0);
-        btn_adicionar.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1200).start();
+        btn_adicionar.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1300).start();
 
         tv_qtdProduto.setTranslationY(200);
         tv_qtdProduto.setAlpha(0);
-        tv_qtdProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1200).start();
+        tv_qtdProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1300).start();
 
         btn_alterar.setTranslationY(1000);
         btn_alterar.setAlpha(0);

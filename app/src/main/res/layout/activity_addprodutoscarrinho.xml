@@ -25,7 +25,7 @@
         android:id="@+id/img_imagemProduto"
         android:layout_width="255dp"
         android:layout_height="250dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/border_full_2"
         android:padding="15dp"
         android:scaleType="centerCrop"
@@ -56,21 +56,19 @@
 
     <Button
         android:id="@+id/btn_lerCodigoBarra"
-        android:layout_width="170dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/border_full_3"
         android:drawableRight="@drawable/ic_settings_cell_black_24dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:text="Ler código de barra"
         android:textColor="#7A8391"
-        android:textSize="10dp"
+        android:textSize="11dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_codigoBarra"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/et_codigoBarra" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_item_produto"
@@ -79,12 +77,11 @@
         android:layout_margin="10dp"
         app:cardBackgroundColor="#24262B"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_alterar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_codigoBarra"
-        app:layout_constraintVertical_bias="0.309">
+        app:layout_constraintTop_toBottomOf="@+id/btn_lerCodigoBarra">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -119,14 +116,13 @@
                     android:text="TextView"
                     android:textColor="#B2B5C2"
                     android:textColorHint="#FFFFFF"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_gravity="bottom"
                 android:orientation="horizontal"
                 android:padding="5dp"
@@ -143,44 +139,43 @@
                     android:layout_weight="1"
                     android:text="              " />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_remover"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@drawable/button_rounded_red"
                     android:gravity="center"
-                    android:text="-"
                     android:textColor="#24262B"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp" />
 
                 <TextView
                     android:id="@+id/tv_qtdProduto"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textColor="#797C8F"
-                    android:textSize="20dp"
+                    android:textColor="#B2B5C2"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_adicionar"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@drawable/button_rounded_green"
                     android:gravity="center"
-                    android:text="+"
                     android:textColor="#24262B"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -206,7 +201,7 @@
         android:scaleType="fitCenter"
         android:text="Alterar"
         android:textColor="#7A8391"
-        android:textSize="12dp"
+        android:textSize="11dp"
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"

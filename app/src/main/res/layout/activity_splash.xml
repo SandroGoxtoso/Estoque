@@ -61,7 +61,7 @@
         android:text="Começe agora mesmo!"
         android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,19 +90,21 @@
         android:id="@+id/btn_acessar"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/border_full_3"
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="center|center_vertical"
         android:onClick="entrarClick"
         android:text="Acessar"
         android:textAlignment="center"
         android:textColor="#7A8391"
+        android:textSize="11dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSubtitle3"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
