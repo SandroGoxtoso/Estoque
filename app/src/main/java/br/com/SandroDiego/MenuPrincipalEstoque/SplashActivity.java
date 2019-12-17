@@ -59,7 +59,6 @@ public class SplashActivity extends AppCompatActivity {
 
     public void entrarClick(View v) {
         Intent ax = new Intent(SplashActivity.this, LoginActivity.class);
-        //Intent ax = new Intent(SplashActivity.this, CarrinhoActivity.class);
         startActivity(ax);
         overridePendingTransition(R.anim.fleft, R.anim.fhelper);
     }
