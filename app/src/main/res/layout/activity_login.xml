@@ -41,7 +41,7 @@
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center|center_vertical"
-        android:onClick="clickLogin"
+        android:onClick="acessarConta"
         android:text="Login"
         android:textColor="#8CB0FF"
         android:textSize="11dp"

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,7 @@ public class CadastroProduto extends AppCompatActivity {
      */
 
     private String nomeArquivo;
+    private String codigo;
     private AlertDialog alerta;
     private AlertDialog alerta2;
 
@@ -226,11 +228,11 @@ public class CadastroProduto extends AppCompatActivity {
     public void cadastro() {
     }
 
-   /* public String lerCodigo(View view) {
+   public String lerCodigo(View view) {
         Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
         startActivityForResult(lerCodigodeBarra, 888);
-        barra = findViewById(R.id.barra);
-        codigo = String.valueOf(barra)
+        et_codigoBarra = findViewById(R.id.et_codigoBarra);
+        codigo = String.valueOf(et_codigoBarra);
         return codigo;
-    }*/
+    }
 }
