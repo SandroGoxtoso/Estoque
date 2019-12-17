@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,12 +34,12 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        holder.cv_itensPedido.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
         holder.tv_nomeProduto.setText(listaProdutos.get(position).getNomeProduto());
         holder.tv_valorProduto.setText("R$ " + listaProdutos.get(position).decimalFormat(listaProdutos.get(position).getSomaProduto()));
         holder.tv_qtdProduto.setText("" + listaProdutos.get(position).getQtdProduto());
         holder.tv_codigoBarra.setText("Código de barra: " + listaProdutos.get(position).getCodigoBarra());
         holder.img_imagemProduto.setImageResource(listaProdutos.get(position).getImgProduto());
-
         holder.cv_itensPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,9 +78,6 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
             cv_itensPedido = itemView.findViewById(R.id.cv_item_produto);
             tv_valorTotalProduto = itemView.findViewById(R.id.tv_valorTotalPedido);
             tv_codigoBarra = itemView.findViewById(R.id.tv_codigoBarra);
-            cv_itensPedido.setTranslationX(800);
-            cv_itensPedido.setAlpha(0);
-            cv_itensPedido.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();
         }
     }
 }
