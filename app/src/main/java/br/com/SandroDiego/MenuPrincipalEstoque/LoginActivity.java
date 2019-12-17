@@ -3,17 +3,15 @@ package br.com.SandroDiego.MenuPrincipalEstoque;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Tela de login que chama os metodos ue fazem as verificaçoes nescessarias.
@@ -27,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     //Atributos da classe
     static final int GOOGLE_SIGN = 123;
     GoogleSignInClient googleSignInClient;
+    Button btn_login, btn_signin;
+    ImageView btn_voltar;
 
     /**
      * Criacao da classe Handler
@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+        iniciarAnimacao();
     }
 
     public void signInGoogle() {
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println();
         }
     }
+
     public void acessarConta(View view) {
         /*List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -98,5 +100,22 @@ public class LoginActivity extends AppCompatActivity {
         Intent ax = new Intent(LoginActivity.this, SplashActivity.class);
         startActivity(ax);
         overridePendingTransition(R.anim.fright, R.anim.fhelper2);
+    }
+
+    public void iniciarAnimacao() {
+        btn_login = findViewById(R.id.btn_login);
+        btn_signin = findViewById(R.id.btn_signin);
+        btn_voltar = findViewById(R.id.btn_voltar);
+
+        btn_login.setTranslationX(400);
+        btn_signin.setTranslationX(-400);
+        btn_voltar.setTranslationX(-400);
+
+        btn_login.setAlpha(0);
+        btn_signin.setAlpha(0);
+
+        btn_login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
+        btn_signin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
+        btn_voltar.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();
     }
 }
