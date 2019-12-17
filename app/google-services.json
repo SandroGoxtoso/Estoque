@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "70115651160",
+    "firebase_url": "https://estoque-47e65.firebaseio.com",
+    "project_id": "estoque-47e65",
+    "storage_bucket": "estoque-47e65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70115651160:android:d9951a6aa01890a6a4e42d",
+        "android_client_info": {
+          "package_name": "br.com.SandroDiego.MenuPrincipalEstoque"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70115651160-1ggnosimkek7hhs71a3cq8mode22m3fu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.SandroDiego.MenuPrincipalEstoque",
+            "certificate_hash": "d2c10416be5609941d9d2ed623c41c5e927a37ea"
+          }
+        },
+        {
+          "client_id": "70115651160-irm3r4f61u605ahp63kgikh1q2tmfhpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5JdFF9GdWv0rsiLR3rmJ2XLcfJploFTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70115651160-irm3r4f61u605ahp63kgikh1q2tmfhpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
