@@ -6,22 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
+public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> implements Filterable {
 
     private static List<Produto> listaProdutos;
+    private static List<Produto> listaProdutosFiltrado;
     private Context context;
 
     public ItemPedido(Context context, List<Produto> listaJogos) {
         this.context = context;
         this.listaProdutos = listaJogos;
+        this.listaProdutosFiltrado = listaJogos;
     }
 
     @Override
@@ -35,21 +40,21 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.cv_itensPedido.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
-        holder.tv_nomeProduto.setText(listaProdutos.get(position).getNomeProduto());
-        holder.tv_valorProduto.setText("R$ " + listaProdutos.get(position).decimalFormat(listaProdutos.get(position).getSomaProduto()));
-        holder.tv_qtdProduto.setText("" + listaProdutos.get(position).getQtdProduto());
-        holder.tv_codigoBarra.setText("Código de barra: " + listaProdutos.get(position).getCodigoBarra());
-        holder.img_imagemProduto.setImageResource(listaProdutos.get(position).getImgProduto());
+        holder.tv_nomeProduto.setText(listaProdutosFiltrado.get(position).getNomeProduto());
+        holder.tv_valorProduto.setText("R$ " + listaProdutosFiltrado.get(position).decimalFormat(listaProdutos.get(position).getSomaProduto()));
+        holder.tv_qtdProduto.setText("" + listaProdutosFiltrado.get(position).getQtdProduto());
+        holder.tv_codigoBarra.setText("Código de barra: " + listaProdutosFiltrado.get(position).getCodigoBarra());
+        holder.img_imagemProduto.setImageResource(listaProdutosFiltrado.get(position).getImgProduto());
         holder.cv_itensPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddProdutosActivity.class);
-                intent.putExtra("NomeProduto", listaProdutos.get(position).getNomeProduto());
-                intent.putExtra("ValorProduto", listaProdutos.get(position).getValorProduto());
-                intent.putExtra("ValorUnitarioProduto", listaProdutos.get(position).getValorProduto());
-                intent.putExtra("QtdProduto", listaProdutos.get(position).getQtdProduto());
-                intent.putExtra("ImagemProduto", listaProdutos.get(position).getImgProduto());
-                intent.putExtra("CodigoBarra", listaProdutos.get(position).getCodigoBarra());
+                intent.putExtra("NomeProduto", listaProdutosFiltrado.get(position).getNomeProduto());
+                intent.putExtra("ValorProduto", listaProdutosFiltrado.get(position).getValorProduto());
+                intent.putExtra("ValorUnitarioProduto", listaProdutosFiltrado.get(position).getValorProduto());
+                intent.putExtra("QtdProduto", listaProdutosFiltrado.get(position).getQtdProduto());
+                intent.putExtra("ImagemProduto", listaProdutosFiltrado.get(position).getImgProduto());
+                intent.putExtra("CodigoBarra", listaProdutosFiltrado.get(position).getCodigoBarra());
                 context.startActivity(intent);
             }
         });
@@ -57,7 +62,37 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listaProdutos.size();
+        return listaProdutosFiltrado.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String Key = charSequence.toString();
+                if (Key.isEmpty()) {
+                    listaProdutosFiltrado = listaProdutos;
+                } else {
+                    List<Produto> filtrados = new ArrayList<>();
+                    for (Produto produto : listaProdutos) {
+                        if (produto.getNomeProduto().toLowerCase().contains(Key.toLowerCase())) {
+                            filtrados.add(produto);
+                        }
+                    }
+                    listaProdutosFiltrado = filtrados;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listaProdutosFiltrado;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listaProdutosFiltrado = (List<Produto>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     // Ao extender a classe asbtrata RecyclerView.ViewHolder é nescessário implementar seu método abstrato MyViewHolder

@@ -1,7 +1,8 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
 import android.os.Bundle;
-import android.view.View;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -62,6 +63,24 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         RecyclerView mrcv_lista_jogos = findViewById(R.id.rcv_itens_pedido);
         ItemPedido myAdapter = new ItemPedido(this, listaProdutos);
+
+        et_barraPesquisa = findViewById(R.id.et_barraPesquisa);
+        et_barraPesquisa.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                myAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mrcv_lista_jogos.setLayoutManager(new GridLayoutManager(this, 1));
         mrcv_lista_jogos.setAdapter(myAdapter);
