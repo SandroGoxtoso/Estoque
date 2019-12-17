@@ -264,6 +264,7 @@
                                 android:drawableRight="@drawable/ic_playlist_add_black_24dp"
                                 android:fontFamily="@font/roboto_bold"
                                 android:gravity="center"
+                                android:onClick="cadastrarClick"
                                 android:text="Add Produto"
                                 android:textColor="#8CB0FF"
                                 android:textSize="11dp"

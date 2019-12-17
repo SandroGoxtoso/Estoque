@@ -1,5 +1,6 @@
 package br.com.SandroDiego.MenuPrincipalEstoque;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -218,5 +219,11 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         ratingDialog.show();
 
+    }
+
+    public void cadastrarClick(View v) {
+        Intent ax = new Intent(CarrinhoActivity.this, CadastroProduto.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fleft, R.anim.fhelper);
     }
 }

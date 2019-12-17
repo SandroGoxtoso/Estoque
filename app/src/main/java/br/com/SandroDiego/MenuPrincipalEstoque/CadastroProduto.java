@@ -228,11 +228,10 @@ public class CadastroProduto extends AppCompatActivity {
     public void cadastro() {
     }
 
-   public String lerCodigo(View view) {
+   public void lerCodigo(View view) {
         Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
         startActivityForResult(lerCodigodeBarra, 888);
         et_codigoBarra = findViewById(R.id.et_codigoBarra);
         codigo = String.valueOf(et_codigoBarra);
-        return codigo;
     }
 }

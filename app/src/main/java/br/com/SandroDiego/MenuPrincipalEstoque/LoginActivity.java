@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     public void acessarConta(View view) {
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+        /*List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
@@ -88,6 +88,15 @@ public class LoginActivity extends AppCompatActivity {
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .build(),
-                GOOGLE_SIGN);
+                GOOGLE_SIGN);*/
+        Intent ax = new Intent(LoginActivity.this, CarrinhoActivity.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fleft, R.anim.fhelper);
+    }
+
+    public void voltarClick(View v) {
+        Intent ax = new Intent(LoginActivity.this, SplashActivity.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
 }
