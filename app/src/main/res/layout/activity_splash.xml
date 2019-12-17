@@ -98,7 +98,7 @@
         android:onClick="entrarClick"
         android:text="Acessar"
         android:textAlignment="center"
-        android:textColor="#7A8391"
+        android:textColor="#8CB0FF"
         android:textSize="11dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

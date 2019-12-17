@@ -241,8 +241,9 @@
                                 android:drawableRight="@drawable/ic_playlist_add_check_black_24dp"
                                 android:fontFamily="@font/roboto_bold"
                                 android:gravity="center"
+                                android:onClick="ratingClick"
                                 android:text="Finalizar pedido"
-                                android:textColor="#7A8391"
+                                android:textColor="#8CB0FF"
                                 android:textSize="11dp"
                                 android:textStyle="bold"
                                 android:typeface="serif" />
@@ -264,7 +265,7 @@
                                 android:fontFamily="@font/roboto_bold"
                                 android:gravity="center"
                                 android:text="Add Produto"
-                                android:textColor="#7A8391"
+                                android:textColor="#8CB0FF"
                                 android:textSize="11dp"
                                 android:textStyle="bold"
                                 android:typeface="serif" />

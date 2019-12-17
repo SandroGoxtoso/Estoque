@@ -147,5 +147,4 @@ public class AddProdutosActivity extends AppCompatActivity {
         int soma = qtdProduto - 1;
         tv_qtdProduto.setText(soma + "");
     }
-
 }
