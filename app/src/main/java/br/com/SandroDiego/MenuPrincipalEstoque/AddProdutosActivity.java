@@ -108,6 +108,7 @@ public class AddProdutosActivity extends AppCompatActivity {
         btn_lerCodigoBarra.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
         cv_item_produto.setTranslationY(1000);
+        cv_item_produto.setAlpha(0);
         cv_item_produto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(800).start();
 
         tv_nomeProduto.setTranslationY(-200);

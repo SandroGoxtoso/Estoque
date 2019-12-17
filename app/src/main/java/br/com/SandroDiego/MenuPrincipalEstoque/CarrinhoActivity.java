@@ -66,6 +66,9 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         et_barraPesquisa = findViewById(R.id.et_barraPesquisa);
         et_barraPesquisa.addTextChangedListener(new TextWatcher() {
+            final android.os.Handler handler = new android.os.Handler();
+            Runnable runnable;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -73,12 +76,19 @@ public class CarrinhoActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                myAdapter.getFilter().filter(charSequence);
+                handler.removeCallbacks(runnable);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                //show some progress, because you can access UI here
+                runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        myAdapter.getFilter().filter(et_barraPesquisa.getText());
+                    }
+                };
+                handler.postDelayed(runnable, 500);
             }
         });
 
