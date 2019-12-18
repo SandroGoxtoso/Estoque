@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="#222222"
+        app:cardBackgroundColor="#3a3d46"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_alterar"
         app:layout_constraintEnd_toEndOf="parent"
