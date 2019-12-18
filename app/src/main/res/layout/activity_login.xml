@@ -16,14 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/login_background"></ImageView>
+        app:srcCompat="@mipmap/login_background_2"></ImageView>
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="126dp"
         android:layout_height="88dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivSplash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

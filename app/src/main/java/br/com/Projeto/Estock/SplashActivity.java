@@ -1,4 +1,4 @@
-package br.com.SandroDiego.MenuPrincipalEstoque;
+package br.com.Projeto.Estock;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +22,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
         fleft = AnimationUtils.loadAnimation(this, R.anim.fleft);

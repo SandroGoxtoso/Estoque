@@ -1,4 +1,4 @@
-package br.com.SandroDiego.MenuPrincipalEstoque;
+package br.com.Projeto.Estock;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,8 +30,7 @@ public class AddProdutosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addprodutoscarrinho);
-        // Deixa a Action Bar invisível
-        getSupportActionBar().hide();
+
         overridePendingTransition(R.anim.fleft, R.anim.fhelper);
 
         // Definições de variáveis

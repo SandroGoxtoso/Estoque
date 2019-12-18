@@ -1,4 +1,4 @@
-package br.com.SandroDiego.MenuPrincipalEstoque;
+package br.com.Projeto.Estock;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

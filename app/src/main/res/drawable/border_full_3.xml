@@ -9,10 +9,9 @@
             <stroke
                 android:width="2dp"
                 android:color="#8CB0FF" />
-            <corners
-                android:radius="20dp" />
+            <corners android:radius="20dp" />
 
-            <solid android:color="#B924262B" />
+            <solid android:color="#222222" />
 
             <padding
                 android:bottom="10dp"

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Estock</string>
+    <string name="facebook_application_id" translatable="false">485896392040084</string>
+    <string name="facebook_login_protocolo" translatable="false">"fb485896392040084"</string>
 </resources>

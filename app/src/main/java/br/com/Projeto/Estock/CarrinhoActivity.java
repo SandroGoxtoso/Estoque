@@ -1,4 +1,4 @@
-package br.com.SandroDiego.MenuPrincipalEstoque;
+package br.com.Projeto.Estock;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,7 +46,6 @@ public class CarrinhoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        getSupportActionBar().hide();
 
         iniciaAnimacao();
 

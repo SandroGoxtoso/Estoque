@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3a3d46"
+    android:background="#333333"
     android:orientation="vertical"
-    tools:context="br.com.SandroDiego.MenuPrincipalEstoque.CarrinhoActivity">
+    tools:context="br.com.Projeto.Estock.CarrinhoActivity">
 
     <LinearLayout
         android:id="@+id/ll_search_bar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="#3a3d46"
+        android:background="#333333"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -81,7 +81,7 @@
                 android:id="@+id/rcv_itens_pedido"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#3a3d46"
+                android:background="#333333"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
 
