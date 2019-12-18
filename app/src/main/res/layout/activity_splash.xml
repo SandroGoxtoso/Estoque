@@ -51,7 +51,7 @@
         android:id="@+id/ivSubtitle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/roboto_regular"
         android:lineSpacingExtra="8dp"
         android:text="Começe agora mesmo!"
