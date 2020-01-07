@@ -251,7 +251,7 @@
             android:onClick="lerCodigo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_produto"
-            app:srcCompat="@mipmap/CodigoDeBarraa" />
+            app:srcCompat="@mipmap/codigo_de_barra" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
