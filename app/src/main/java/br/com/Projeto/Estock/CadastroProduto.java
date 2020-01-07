@@ -29,6 +29,7 @@ public class CadastroProduto extends AppCompatActivity {
     private static final int CAMERA_RESULT = 12356;
     private final int GALERIA_IMAGENS = 1;
     private final int PERMISSAO_REQUEST = 2;
+    private final int LEITOR_DE_CODIGO_DE_BARRA = 888;
     /**
      * Criando os atributos da classe
      */
@@ -55,8 +56,6 @@ public class CadastroProduto extends AppCompatActivity {
      * Temos o alert que é 'Produto cadastrado'
      * E temos o alerta que é 'Dados inválidos'
      */
-
-
     private void alert() {
         //Cria o gerador do AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -206,11 +205,18 @@ public class CadastroProduto extends AppCompatActivity {
                 img_Produto.setImageBitmap(bitmap);
             }
         }
-
-        /**
-         * Método que limpa os campos após o cadastro.
-         */
+        if (requestCode == LEITOR_DE_CODIGO_DE_BARRA) {
+            if (resultCode == RESULT_OK) {
+                String codigoDeBarras = data.getStringExtra("codigo");
+                et_codigoBarra = findViewById(R.id.et_codigoBarra);
+                et_codigoBarra.setText(codigoDeBarras);
+            }
+        }
     }
+
+    /**
+     * Método que limpa os campos após o cadastro.
+     */
 
     public void limpaCampos() {
         et_nomeProduto.setText("");
@@ -227,10 +233,9 @@ public class CadastroProduto extends AppCompatActivity {
     public void cadastro() {
     }
 
-   public void lerCodigo(View view) {
+    public void lerCodigo(View view) {
         Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
-        startActivityForResult(lerCodigodeBarra, 888);
-        et_codigoBarra = findViewById(R.id.et_codigoBarra);
-        codigo = String.valueOf(et_codigoBarra);
+        startActivityForResult(lerCodigodeBarra, LEITOR_DE_CODIGO_DE_BARRA);
+
     }
 }
