@@ -28,7 +28,7 @@
                 android:src="@mipmap/user_logo" />
 
             <EditText
-                android:id="@+id/et_barraPesquisa"
+                android:id="@+id/et_senha"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="6dp"
@@ -157,7 +157,6 @@
                                     android:layout_gravity="left"
                                     android:fontFamily="@font/roboto_regular"
                                     android:text="Qtd. Total"
-                                    android:textAlignment="viewStart"
                                     android:textColor="#B2B5C2"
                                     android:textSize="12dp" />
 

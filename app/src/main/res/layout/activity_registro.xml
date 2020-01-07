@@ -21,42 +21,22 @@
         app:srcCompat="@mipmap/logo1" />
 
     <Button
-        android:id="@+id/btn_login"
-        android:layout_width="120dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/border_full_3"
-        android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+        android:id="@+id/btn_alterar"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/border_full_ok"
+        android:drawableRight="@drawable/ic_check_black_24dp"
         android:fontFamily="@font/roboto_bold"
-        android:gravity="center|center_vertical"
-        android:onClick="acessarConta"
-        android:text="Login"
-        android:textColor="#8CB0FF"
+        android:onClick="notificacao"
+        android:scaleType="fitCenter"
+        android:text="Registrar-se"
+        android:textColor="#96FF87"
         android:textSize="11dp"
         android:textStyle="bold"
+        android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_signin"
-        android:layout_width="120dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/border_full_3"
-        android:drawableLeft="@drawable/ic_person_outline_black_24dp"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:text="Sign In"
-        android:textColor="#8CB0FF"
-        android:textSize="11dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_login"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -79,7 +59,7 @@
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signin"
+        app:layout_constraintBottom_toTopOf="@+id/btn_alterar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo">
@@ -91,7 +71,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/img_usuario"
                 android:layout_width="35dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
@@ -129,7 +109,43 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/img_email"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                app:srcCompat="@drawable/ic_mail_outline_black_24dp"
+                tools:layout_editor_absoluteY="610dp" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/border_search_box"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:selectAllOnFocus="false"
+                android:textColor="#B2B5C2"
+                android:textColorHint="#B2B5C2"
+                android:textSize="14dp"
+                tools:layout_editor_absoluteX="61dp"
+                tools:layout_editor_absoluteY="408dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_senha"
                 android:layout_width="35dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
@@ -158,7 +174,7 @@
                 tools:layout_editor_absoluteX="61dp"
                 tools:layout_editor_absoluteY="408dp" />
         </LinearLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
