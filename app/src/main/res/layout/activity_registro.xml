@@ -8,27 +8,54 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/img_logo"
+        android:id="@+id/ivLogo"
         android:layout_width="126dp"
         android:layout_height="88dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
-        app:layout_constraintBottom_toBottomOf="@+id/ivSplash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/logo1" />
 
+    <TextView
+        android:id="@+id/ivSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Bem-Vindo ao Estock"
+        android:textAlignment="viewStart"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+
+    <TextView
+        android:id="@+id/ivSubtitle2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:lineSpacingExtra="8dp"
+        android:text="O sistema de gerenciamento de estoque mais completo do mercado."
+        android:textAlignment="center"
+        android:textColor="#B2B5C2"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSubtitle" />
+
     <Button
-        android:id="@+id/btn_alterar"
+        android:id="@+id/btn_registrarse"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/border_full_ok"
         android:drawableRight="@drawable/ic_check_black_24dp"
         android:fontFamily="@font/roboto_bold"
-        android:onClick="notificacao"
         android:scaleType="fitCenter"
         android:text="Registrar-se"
         android:textColor="#96FF87"
@@ -59,10 +86,10 @@
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_alterar"
+        app:layout_constraintBottom_toTopOf="@+id/btn_registrarse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo">
+        app:layout_constraintTop_toBottomOf="@+id/ivSubtitle2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +112,7 @@
                 android:id="@+id/et_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_margin="5dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/border_search_box"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -123,7 +150,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_margin="5dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/border_search_box"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -138,6 +165,7 @@
                 tools:layout_editor_absoluteX="61dp"
                 tools:layout_editor_absoluteY="408dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,7 +187,7 @@
                 android:id="@+id/et_senha"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_margin="5dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/border_search_box"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -173,6 +201,35 @@
                 android:textSize="14dp"
                 tools:layout_editor_absoluteX="61dp"
                 tools:layout_editor_absoluteY="408dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_termos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:button="@drawable/radiobutton_style" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="Aceitos os termos de uso, política e privacidade."
+                android:textColor="#FFFFFF"
+                android:textSize="12dp" />
+
         </LinearLayout>
 
     </LinearLayout>
