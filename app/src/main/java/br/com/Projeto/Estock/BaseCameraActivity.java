@@ -3,6 +3,7 @@ package br.com.Projeto.Estock;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -41,13 +42,14 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.CAMERA) !=
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
                     50);
         }
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_base_camera);
 
         btnRetry = findViewById(R.id.btnRetry);
