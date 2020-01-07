@@ -50,6 +50,7 @@
         android:drawableLeft="@drawable/ic_person_outline_black_24dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
+        android:onClick="registrarse"
         android:text="Sign In"
         android:textColor="#8CB0FF"
         android:textSize="11dp"
@@ -75,7 +76,7 @@
         app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/ll_campos"
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"

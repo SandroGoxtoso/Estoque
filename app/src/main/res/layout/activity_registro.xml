@@ -55,7 +55,7 @@
         app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/ll_campos"
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"

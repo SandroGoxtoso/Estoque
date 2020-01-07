@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.login.Login;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,5 +95,11 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
         btn_signin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
         btn_voltar.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();
+    }
+
+    public void registrarse(View view) {
+        Intent ax = new Intent(LoginActivity.this, RegistroActivity.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fleft, R.anim.fhelper2);
     }
 }
