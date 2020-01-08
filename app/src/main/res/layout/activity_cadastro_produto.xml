@@ -38,8 +38,8 @@
 
         <EditText
             android:id="@+id/et_codigoBarra"
-            android:layout_width="264dp"
-            android:layout_height="27dp"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
             android:layout_marginStart="77dp"
             android:layout_marginTop="228dp"
             android:layout_marginEnd="83dp"
@@ -73,7 +73,7 @@
             android:layout_width="59dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="228dp"
+            android:layout_marginTop="235dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Codigo:"
             android:textColor="#B2B5C2"
@@ -244,10 +244,10 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="44dp"
-            android:layout_height="21dp"
-            android:layout_marginTop="57dp"
-            android:layout_marginEnd="45dp"
+            android:layout_width="50dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="36dp"
             android:onClick="lerCodigo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_produto"
