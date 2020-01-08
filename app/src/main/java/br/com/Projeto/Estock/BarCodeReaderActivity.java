@@ -32,7 +32,6 @@ import java.util.List;
  * @Since 1.1.0
  */
 public class BarCodeReaderActivity extends BaseCameraActivity {
-    private TextView codeData;
 
     /**
      * Inicia a classe BarCodeReaderActivity.
@@ -63,8 +62,6 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                 });
             }
         });
-
-        codeData = findViewById(R.id.codeData);
     }
 
     /**
@@ -126,15 +123,7 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
         detector.detectInImage(image).addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
             @Override
             public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
-                FirebaseVisionBarcode barcode = barcodes.get(0);
 
-                String codigo = barcode.getDisplayValue();
-
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("codigo", codigo);
-                setResult(Activity.RESULT_OK, returnIntent);
-
-                finish();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -149,9 +138,17 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                     public void onComplete(@NonNull Task<List<FirebaseVisionBarcode>> task) {
                         //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
-                        //TODO: adicionar o código de barras encontrado a intent de resposta da tela de cadastro e finalizar a Activity.
+                        FirebaseVisionBarcode barcode = task.getResult().get(0);
 
-                        //finish();
+                        if(barcode != null) {
+                            String codigo = barcode.getDisplayValue();
+
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("codigo", codigo);
+                            setResult(Activity.RESULT_OK, returnIntent);
+
+                            finish();
+                        }
                     }
                 });
     }
