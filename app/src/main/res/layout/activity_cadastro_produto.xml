@@ -11,7 +11,7 @@
         android:id="@+id/hint"
         android:layout_width="440dp"
         android:layout_height="748dp"
-        android:background="#333333"
+        android:background="@drawable/gradiente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -48,9 +48,9 @@
             android:hint="Nome do produto"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textSize="15dp"
             android:textColor="#B2B5C2"
             android:textColorHint="#B2B5C2"
+            android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -169,8 +169,8 @@
             android:inputType="numberDecimal"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textSize="15dp"
             android:textColorHint="#B2B5C2"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -187,9 +187,9 @@
             android:inputType="text|numberDecimal"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textSize="15dp"
             android:textColor="#B2B5C2"
             android:textColorHint="#B2B5C2"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
