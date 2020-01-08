@@ -1,6 +1,7 @@
 package br.com.Projeto.Estock;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -11,10 +12,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +26,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class CadastroProduto extends AppCompatActivity {
 
     private static final int CAMERA_RESULT = 12356;
-    private final int GALERIA_IMAGENS = 1;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
+    private static final int REQUEST_CAMERA_PERMISSION = 2000;
+    private static final int GALERIA_IMAGENS = 111;
+    private final int CAPTURAR_IMAGEM = 222;
     private final int PERMISSAO_REQUEST = 2;
     /**
      * Criando os atributos da classe
@@ -41,6 +49,10 @@ public class CadastroProduto extends AppCompatActivity {
     private EditText et_nomeProduto, et_valorProduto, et_qtdProduto, et_codigoBarra;
     private ImageView img_Produto;
     private Button btn_cadastrar, btn_codigoBarra, btn_carregarImagem, btn_carregarCamera;
+    private ImageView ibt_foto;
+    private Uri uri;
+    private Activity thisActivity;
+    private String nomeImagem;
 
     public static Bitmap rotationBitMap(Bitmap bitmap) {
         Matrix matrix = new Matrix();
@@ -97,7 +109,7 @@ public class CadastroProduto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_produto);
         setTitle("Cadastrar produto");
-
+        thisActivity = this;
         et_nomeProduto = findViewById(R.id.et_nomeProduto);
         et_valorProduto = findViewById(R.id.et_valorProduto);
         et_qtdProduto = findViewById(R.id.et_qtdProduto);
@@ -113,6 +125,25 @@ public class CadastroProduto extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 alert();
+            }
+        });
+
+        btn_carregarCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    Log.d("DEBUG","onclick antes");
+                    ActivityCompat.requestPermissions(thisActivity, new String[]{Manifest.permission.READ_CONTACTS},
+                            REQUEST_CAMERA_PERMISSION
+                            );
+                    Log.d("DEBUG","onclick dps");
+                }else{
+                    boolean temCamera = getPackageManager()
+                            .hasSystemFeature(PackageManager.FEATURE_CAMERA);
+                    if (temCamera) {
+                       tirarFoto();
+                    }
+                }
             }
         });
 
@@ -155,7 +186,7 @@ public class CadastroProduto extends AppCompatActivity {
             }
         });
 
-        btn_carregarCamera.setOnClickListener(new View.OnClickListener() {
+        /*btn_carregarCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -166,13 +197,12 @@ public class CadastroProduto extends AppCompatActivity {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, arquivoFoto);
                 startActivityForResult(intent, CAMERA_RESULT);
             }
-        });
+        });*/
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALERIA_IMAGENS) {
             if (resultCode == RESULT_OK) {
@@ -188,29 +218,73 @@ public class CadastroProduto extends AppCompatActivity {
                 img_Produto.setImageBitmap(thumbnail);
             }
         }
-        if (requestCode == CAMERA_RESULT) {
-            if (resultCode == RESULT_OK) {
-                int targetW = img_Produto.getWidth();
-                int targetH = img_Produto.getHeight();
-                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                int photoW = bmOptions.outWidth;
-                int photoH = bmOptions.outHeight;
-                int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-                bmOptions.inJustDecodeBounds = false;
-                bmOptions.inSampleSize = scaleFactor;
-                File foto = new File(nomeArquivo);
-                Uri fotoUri = FileProvider.getUriForFile(getApplicationContext(),
-                        getApplicationContext().getPackageName() + ".provider", foto);
-                Bitmap bitmap = BitmapFactory.decodeFile(fotoUri.toString(), bmOptions);
-                bitmap = rotationBitMap(bitmap);
-                img_Produto.setImageBitmap(bitmap);
+        if (requestCode == CAPTURAR_IMAGEM) {
+            if (resultCode == RESULT_OK) {;
+
+                Bitmap thumbnail = (BitmapFactory.decodeFile(nomeImagem));
+                thumbnail = rotationBitMap(thumbnail);
+                img_Produto.setImageBitmap(thumbnail);
+                mostrarMensagem("Imagem capturada!");
+                adicionarNaGaleria();
+            } else {
+                mostrarMensagem("Imagem não capturada!");
             }
         }
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        if (requestCode == REQUEST_CAMERA_PERMISSION){
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                tirarFoto();
+            }else{
+                Log.d("DEBUG","PERMISSÃO NEGADA");
+            }
+        }
+    }
+
+    private void tirarFoto() {
+        File diretorio = Environment
+                .getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
+        nomeImagem = diretorio.getPath() + "/" +
+                System.currentTimeMillis() +
+                ".jpg";
+        //uri = Uri.fromFile(new File(nomeImagem));
+        uri = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getApplicationContext().getPackageName() + ".provider", new File(nomeImagem));
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(intent, CAPTURAR_IMAGEM);
+    }
+
+    private void mostrarMensagem(String msg) {
+        Toast.makeText(this, msg,
+                Toast.LENGTH_LONG)
+                .show();
+    }
+    private void adicionarNaGaleria() {
+        Intent intent = new Intent(
+                Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        intent.setData(uri);
+        this.sendBroadcast(intent);
+    }
+
+    public void capturarImagem(View v){
+
+    }
+    public void visualizarImagem(View v){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri, "image/jpeg");
+        startActivity(intent);
+    }
+
 
         /**
          * Método que limpa os campos após o cadastro.
          */
-    }
 
     public void limpaCampos() {
         et_nomeProduto.setText("");
@@ -224,13 +298,4 @@ public class CadastroProduto extends AppCompatActivity {
      * O método retorna um produto.
      */
 
-    public void cadastro() {
-    }
-
-   public void lerCodigo(View view) {
-        Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
-        startActivityForResult(lerCodigodeBarra, 888);
-        et_codigoBarra = findViewById(R.id.et_codigoBarra);
-        codigo = String.valueOf(et_codigoBarra);
-    }
 }
