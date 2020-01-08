@@ -30,8 +30,6 @@ public class SplashActivity extends AppCompatActivity {
         ivSubtitle = findViewById(R.id.ivSubtitle);
         ivSubtitle2 = findViewById(R.id.ivSubtitle2);
         ivSubtitle3 = findViewById(R.id.ivSubtitle3);
-
-        ivSplash = findViewById(R.id.ivSplash);
         ivLogo = findViewById(R.id.ivLogo);
 
         btn_acessar = findViewById(R.id.btn_acessar);

@@ -67,7 +67,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         RecyclerView mrcv_lista_jogos = findViewById(R.id.rcv_itens_pedido);
         ItemPedido myAdapter = new ItemPedido(this, listaProdutos);
 
-        et_barraPesquisa = findViewById(R.id.et_barraPesquisa);
+        et_barraPesquisa = findViewById(R.id.et_senha);
         et_barraPesquisa.addTextChangedListener(new TextWatcher() {
             final android.os.Handler handler = new android.os.Handler();
             Runnable runnable;
@@ -132,7 +132,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
         stb2 = AnimationUtils.loadAnimation(this, R.anim.stb2);
         userImage = findViewById(R.id.user_image);
-        et_barraPesquisa = findViewById(R.id.et_barraPesquisa);
+        et_barraPesquisa = findViewById(R.id.et_senha);
         tv_linha = findViewById(R.id.tv_linha);
         tv_linha2 = findViewById(R.id.tv_linha2);
         cv_totaPedido = findViewById(R.id.cv_total_pedido);
