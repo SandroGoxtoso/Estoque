@@ -1,5 +1,7 @@
 package br.com.Projeto.Estock;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -75,6 +77,7 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
      */
     @Override
     public void onClick(View view) {
+        /*
         cameraKitView.captureImage(new CameraKitView.ImageCallback() {
             @Override
             public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
@@ -88,6 +91,7 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                 });
             }
         });
+        */
     }
 
     /**
@@ -122,9 +126,15 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
         detector.detectInImage(image).addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
             @Override
             public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
-                for (FirebaseVisionBarcode firebaseBarcode : barcodes) {
-                    codeData.setText(firebaseBarcode.getDisplayValue());
-                }
+                FirebaseVisionBarcode barcode = barcodes.get(0);
+
+                String codigo = barcode.getDisplayValue();
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("codigo", codigo);
+                setResult(Activity.RESULT_OK, returnIntent);
+
+                finish();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -141,7 +151,7 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
 
                         //TODO: adicionar o código de barras encontrado a intent de resposta da tela de cadastro e finalizar a Activity.
 
-                        finish();
+                        //finish();
                     }
                 });
     }

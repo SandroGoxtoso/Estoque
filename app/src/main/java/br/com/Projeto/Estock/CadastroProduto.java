@@ -37,6 +37,7 @@ public class CadastroProduto extends AppCompatActivity {
     private static final int GALERIA_IMAGENS = 111;
     private final int CAPTURAR_IMAGEM = 222;
     private final int PERMISSAO_REQUEST = 2;
+    private final int LEITOR_DE_CODIGO_DE_BARRA = 888;
     /**
      * Criando os atributos da classe
      */
@@ -67,8 +68,6 @@ public class CadastroProduto extends AppCompatActivity {
      * Temos o alert que é 'Produto cadastrado'
      * E temos o alerta que é 'Dados inválidos'
      */
-
-
     private void alert() {
         //Cria o gerador do AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -286,6 +285,11 @@ public class CadastroProduto extends AppCompatActivity {
          * Método que limpa os campos após o cadastro.
          */
 
+
+    /**
+     * Método que limpa os campos após o cadastro.
+     */
+
     public void limpaCampos() {
         et_nomeProduto.setText("");
         et_valorProduto.setText("");
@@ -297,5 +301,6 @@ public class CadastroProduto extends AppCompatActivity {
      * Criando um novo produto com as caracteristicas.
      * O método retorna um produto.
      */
+
 
 }

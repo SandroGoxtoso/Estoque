@@ -23,12 +23,10 @@
         android:layout_height="88dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
-        app:layout_constraintBottom_toBottomOf="@+id/ivSplash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/logo1" />
 
     <TextView
@@ -45,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSubtitle"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.67" />
 
     <TextView
         android:id="@+id/ivSubtitle3"
@@ -69,7 +67,7 @@
         android:id="@+id/ivSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:lineSpacingExtra="8dp"
         android:text="Bem-Vindo ao Estock"
