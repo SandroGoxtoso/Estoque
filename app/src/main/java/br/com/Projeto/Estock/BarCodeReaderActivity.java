@@ -140,9 +140,11 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                         Log.i("Código de Barras", "Leitura completada.");
 
                         if (task.getResult().isEmpty()) {
+                            Log.i("Código de Barras", "Código não enviado.");
                             setResult(RESULT_CANCELED);
                             finish();
                         } else {
+                            Log.i("Código de Barras", "Código enviado.");
                             FirebaseVisionBarcode barcode = task.getResult().get(0);
                             String codigo = barcode.getDisplayValue();
 
