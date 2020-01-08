@@ -230,6 +230,13 @@ public class CadastroProduto extends AppCompatActivity {
             }
         }
 
+        if (requestCode == LEITOR_DE_CODIGO_DE_BARRA) {
+            if (resultCode == RESULT_OK) {
+                String codigoDeBarras = data.getStringExtra("codigo");
+                et_codigoBarra = findViewById(R.id.et_codigoBarra);
+                et_codigoBarra.setText(codigoDeBarras);
+            }
+        }
     }
 
     public void onRequestPermissionsResult(int requestCode,
@@ -280,27 +287,17 @@ public class CadastroProduto extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-        /**
-         * Método que limpa os campos após o cadastro.
-         */
-
-
     /**
      * Método que limpa os campos após o cadastro.
      */
-
     public void limpaCampos() {
         et_nomeProduto.setText("");
         et_valorProduto.setText("");
         et_qtdProduto.setText("");
     }
 
-    /**
-     * Criando as variaveis que armazenam os dados e convertem para seu tipo primitivo.
-     * Criando um novo produto com as caracteristicas.
-     * O método retorna um produto.
-     */
-
-
+    public void lerCodigo(View view) {
+        Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
+        startActivityForResult(lerCodigodeBarra, LEITOR_DE_CODIGO_DE_BARRA);
+    }
 }
