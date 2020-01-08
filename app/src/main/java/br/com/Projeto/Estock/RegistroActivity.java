@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class RegistroActivity extends AppCompatActivity {
     ImageView ivLogo, btn_voltar;
     Button btn_registrarse;
     TextView ivSubtitle, ivSubtitle2;
+    RadioButton rb_termos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

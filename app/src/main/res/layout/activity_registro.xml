@@ -121,8 +121,8 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
                 android:selectAllOnFocus="false"
-                android:textColor="#B2B5C2"
-                android:textColorHint="#B2B5C2"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#676768"
                 android:textSize="14dp"
                 tools:layout_editor_absoluteX="60dp"
                 tools:layout_editor_absoluteY="595dp" />
@@ -159,8 +159,8 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
                 android:selectAllOnFocus="false"
-                android:textColor="#B2B5C2"
-                android:textColorHint="#B2B5C2"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#676768"
                 android:textSize="14dp"
                 tools:layout_editor_absoluteX="61dp"
                 tools:layout_editor_absoluteY="408dp" />
@@ -196,8 +196,8 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
                 android:selectAllOnFocus="false"
-                android:textColor="#B2B5C2"
-                android:textColorHint="#B2B5C2"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#676768"
                 android:textSize="14dp"
                 tools:layout_editor_absoluteX="61dp"
                 tools:layout_editor_absoluteY="408dp" />
@@ -227,7 +227,7 @@
                 android:layout_weight="1"
                 android:gravity="center|left"
                 android:text="Aceitos os termos de uso, política e privacidade."
-                android:textColor="#FFFFFF"
+                android:textColor="#676768"
                 android:textSize="12dp" />
 
         </LinearLayout>
