@@ -180,6 +180,7 @@
             android:drawableRight="@drawable/ic_settings_cell_black_24dp"
             android:fontFamily="@font/roboto_regular"
             android:hint="Código de barra"
+            android:onClick="scanearCodigo"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:textColor="#FFFFFF"

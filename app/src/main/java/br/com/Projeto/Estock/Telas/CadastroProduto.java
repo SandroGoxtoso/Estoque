@@ -4,9 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -26,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.io.File;
 
@@ -202,36 +202,17 @@ public class CadastroProduto extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALERIA_IMAGENS) {
-            if (resultCode == RESULT_OK) {
-                Uri selectedImage = data.getData();
-                String[] filePath = {MediaStore.Images.Media.DATA};
-                Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePath[0]);
-                String picturePath = c.getString(columnIndex);
-                c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-                thumbnail = rotationBitMap(thumbnail);
-                img_Produto.setImageBitmap(thumbnail);
-            }
-        }
-        if (requestCode == CAPTURAR_IMAGEM) {
-            if (resultCode == RESULT_OK) {
-                ;
-
-                Bitmap thumbnail = (BitmapFactory.decodeFile(nomeImagem));
-                thumbnail = rotationBitMap(thumbnail);
-                img_Produto.setImageBitmap(thumbnail);
-                mostrarMensagem("Imagem capturada!");
-                adicionarNaGaleria();
+        EditText btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Não foi possível escaner o código!", Toast.LENGTH_SHORT).show();
             } else {
-                mostrarMensagem("Imagem não capturada!");
+                btn_lerCodigoBarra.setText(result.getContents());
             }
         }
-
     }
 
     public void onRequestPermissionsResult(int requestCode,
@@ -311,6 +292,14 @@ public class CadastroProduto extends AppCompatActivity {
         startActivity(ax);
         overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
-    
+
+    public void scanearCodigo(View view) {
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setCaptureActivity(Retrato.class);
+        intentIntegrator.setOrientationLocked(false);
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        intentIntegrator.initiateScan();
+    }
+
 
 }
