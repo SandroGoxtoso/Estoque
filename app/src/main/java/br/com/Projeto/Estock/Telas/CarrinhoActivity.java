@@ -13,12 +13,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.codemybrainsout.ratingdialog.RatingDialog;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -26,14 +37,18 @@ import java.util.List;
 
 import br.com.Projeto.Estock.Adapter.ItemPedido;
 import br.com.Projeto.Estock.Model.Produto;
+import br.com.Projeto.Estock.Model.Usuarios;
 import br.com.Projeto.Estock.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
     List<Produto> listaProdutos;
     Animation smalltobig, stb2;
-
-    ImageView userImage;
+    StorageReference storageReference;
+    FirebaseUser usuarioFirebase;
+    DatabaseReference referencia;
+    CircleImageView iv_foto;
     EditText et_barraPesquisa;
     CardView cv_totaPedido;
     TextView tv_linha, tv_linha2;
@@ -102,6 +117,29 @@ public class CarrinhoActivity extends AppCompatActivity {
         mrcv_lista_jogos.setLayoutManager(new GridLayoutManager(this, 1));
         mrcv_lista_jogos.setAdapter(myAdapter);
 
+        iv_foto = findViewById(R.id.iv_foto);
+
+        usuarioFirebase = FirebaseAuth.getInstance().getCurrentUser();
+        referencia = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioFirebase.getUid());
+
+        storageReference = FirebaseStorage.getInstance().getReference("Armazenamento");
+
+        referencia.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
+                if (usuarios.getFoto().equals("padrao")) {
+                    iv_foto.setImageResource(R.mipmap.padrao);
+                } else {
+                    Glide.with(CarrinhoActivity.this).load(usuarios.getFoto()).into(iv_foto);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     // Total a ser exibido no final da lista (Soma das quantidades de produtos)
@@ -135,7 +173,7 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
         stb2 = AnimationUtils.loadAnimation(this, R.anim.stb2);
-        userImage = findViewById(R.id.user_image);
+        iv_foto = findViewById(R.id.iv_foto);
         et_barraPesquisa = findViewById(R.id.et_senha);
         tv_linha = findViewById(R.id.tv_linha);
         tv_linha2 = findViewById(R.id.tv_linha2);
@@ -152,8 +190,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         ll_search_bar.setAlpha(0);
         ll_search_bar.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(200).start();
 
-        userImage.setTranslationX(-400);
-        userImage.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(800).start();
+        iv_foto.setTranslationX(-400);
+        iv_foto.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(800).start();
 
         et_barraPesquisa.setTranslationX(1000);
         et_barraPesquisa.setAlpha(0);
