@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "70115651160",
-    "firebase_url": "https://estoque-47e65.firebaseio.com",
-    "project_id": "estoque-47e65",
-    "storage_bucket": "estoque-47e65.appspot.com"
+    "project_number": "879541415894",
+    "firebase_url": "https://estock-ed6f0.firebaseio.com",
+    "project_id": "estock-ed6f0",
+    "storage_bucket": "estock-ed6f0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:70115651160:android:d9951a6aa01890a6a4e42d",
+        "mobilesdk_app_id": "1:879541415894:android:e3fab3f352df45f0d93e77",
         "android_client_info": {
-          "package_name": "br.com.SandroDiego.MenuPrincipalEstoque"
+          "package_name": "br.com.Projeto.Estock"
         }
       },
       "oauth_client": [
         {
-          "client_id": "70115651160-1ggnosimkek7hhs71a3cq8mode22m3fu.apps.googleusercontent.com",
+          "client_id": "879541415894-f00migi9i4u3675jqq8rri9g2mqv03s9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "br.com.SandroDiego.MenuPrincipalEstoque",
-            "certificate_hash": "d2c10416be5609941d9d2ed623c41c5e927a37ea"
+            "package_name": "br.com.Projeto.Estock",
+            "certificate_hash": "0f347972ba8d72b2ca21dfc9b272049b71a388cc"
           }
         },
         {
-          "client_id": "70115651160-irm3r4f61u605ahp63kgikh1q2tmfhpi.apps.googleusercontent.com",
+          "client_id": "879541415894-vggho77va9d4vhi4p3p87tkind02bjjj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA5JdFF9GdWv0rsiLR3rmJ2XLcfJploFTQ"
+          "current_key": "AIzaSyBPTjNuBvMtl_ZLOPIPZglNwBmAkkMhGrY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "70115651160-irm3r4f61u605ahp63kgikh1q2tmfhpi.apps.googleusercontent.com",
+              "client_id": "879541415894-vggho77va9d4vhi4p3p87tkind02bjjj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

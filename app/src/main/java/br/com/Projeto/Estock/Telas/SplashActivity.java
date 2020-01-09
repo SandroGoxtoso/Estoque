@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Telas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import br.com.Projeto.Estock.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -36,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
 
         ivLogo.startAnimation(smalltobig);
 
-        ivLogo.setTranslationX(1000);
+        ivLogo.setTranslationX(400);
         ivSubtitle.setTranslationY(400);
         ivSubtitle2.setTranslationY(400);
         ivSubtitle3.setTranslationY(400);

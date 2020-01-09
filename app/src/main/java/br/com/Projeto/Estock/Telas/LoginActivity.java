@@ -1,65 +1,74 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Telas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-import java.util.List;
+import br.com.Projeto.Estock.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE = 7117;
     Button btn_login, btn_signin;
     ImageView btn_voltar, ivLogo;
-    List<AuthUI.IdpConfig> providers;
     Animation smalltobig, fade_scale_transition;
-    LinearLayout ll_campos;
+    LinearLayout ll_email, ll_senha;
     TextView ivSubtitle, ivSubtitle2;
+    EditText et_email, et_senha;
+
+    FirebaseAuth autenticador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         iniciarAnimacao();
-    }
 
-    public void mostrarOpcoesLogin() {
-        startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(providers).setTheme(R.style.TemaAuth).build(), REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == REQUEST_CODE) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
-            if (resultCode == RESULT_OK) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Toast.makeText(this, "" + user.getEmail(), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "" + response.getError().getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
+        autenticador = FirebaseAuth.getInstance();
+        et_email = findViewById(R.id.et_email);
+        et_senha = findViewById(R.id.et_senha);
     }
 
     public void acessarConta(View view) {
-        Intent ax = new Intent(LoginActivity.this, CarrinhoActivity.class);
-        startActivity(ax);
-        overridePendingTransition(R.anim.fleft, R.anim.fhelper);
+
+        String email = et_email.getText().toString();
+        String senha = et_senha.getText().toString();
+
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
+            Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            autenticador.signInWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // Teste
+                    Intent ax = new Intent(LoginActivity.this, PrincipalActivity.class);
+                    //ax.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(ax);
+                    overridePendingTransition(R.anim.fleft, R.anim.fhelper);
+                    // Original
+                    /*Intent ax = new Intent(LoginActivity.this, CarrinhoActivity.class);
+                    ax.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(ax);
+                    overridePendingTransition(R.anim.fleft, R.anim.fhelper);*/
+                } else {
+                    Toast.makeText(LoginActivity.this, "E-mail ou senha incorretos!", Toast.LENGTH_SHORT).show();
+                    et_email.setText("");
+                    et_senha.setText("");
+                    et_email.requestFocus();
+                }
+            });
+        }
     }
 
     public void voltarClick(View v) {
@@ -79,29 +88,34 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_signin = findViewById(R.id.btn_signin);
         btn_voltar = findViewById(R.id.btn_voltar);
-        ll_campos = findViewById(R.id.ll_campos);
+        ll_email = findViewById(R.id.ll_email);
+        ll_senha = findViewById(R.id.ll_senha);
 
         ivLogo.startAnimation(smalltobig);
-        ll_campos.startAnimation(fade_scale_transition);
 
-        ivLogo.setTranslationX(-1000);
+        ivLogo.setTranslationX(400);
         ivSubtitle.setTranslationY(400);
         ivSubtitle2.setTranslationY(400);
         btn_login.setTranslationX(400);
         btn_signin.setTranslationX(-400);
         btn_voltar.setTranslationX(-400);
+        ll_email.setTranslationX(-800);
+        ll_senha.setTranslationX(-800);
 
         ivSubtitle.setAlpha(0);
         ivSubtitle2.setAlpha(0);
         btn_login.setAlpha(0);
         btn_signin.setAlpha(0);
+        ll_email.setAlpha(0);
+        ll_senha.setAlpha(0);
 
         ivLogo.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         ivSubtitle.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(700).start();
         ivSubtitle2.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(900).start();
-        ll_campos.animate().translationX(0).alpha(1).setDuration(1400).setStartDelay(1300).start();
-        btn_login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
-        btn_signin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
+        ll_email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1200).start();
+        ll_senha.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1400).start();
+        btn_login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(2000).start();
+        btn_signin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(2000).start();
         btn_voltar.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();
     }
 

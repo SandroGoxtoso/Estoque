@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Telas;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -17,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.NotificationCompat;
 
-public class AddProdutosActivity extends AppCompatActivity {
+import br.com.Projeto.Estock.R;
+
+public class DetalhesProdutoActivity extends AppCompatActivity {
 
     Animation smalltobig, stb2;
     private TextView tv_nomeProduto, tv_valorUnitarioProduto, tv_qtdProduto;
@@ -29,7 +31,7 @@ public class AddProdutosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addprodutoscarrinho);
+        setContentView(R.layout.activity_detalhes_produto);
 
         overridePendingTransition(R.anim.fleft, R.anim.fhelper);
 
@@ -59,19 +61,19 @@ public class AddProdutosActivity extends AppCompatActivity {
     }
 
     public void fecharActivity(View view) {
-        /*Intent ax = new Intent(AddProdutosActivity.this, CarrinhoActivity.class);
+        Intent ax = new Intent(DetalhesProdutoActivity.this, CarrinhoActivity.class);
         startActivity(ax);
-        overridePendingTransition(R.anim.fright, R.anim.fhelper2);*/
-        finish();
+        overridePendingTransition(R.anim.fright, R.anim.fhelper2);
+        /*finish();*/
     }
 
     public void notificacao(View view) {
         String mensagem = "Sucesso! Clique aqui para retornar ao seu carrinho!";
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(AddProdutosActivity.this).setSmallIcon(R.drawable.ic_check_black_24dp).setContentTitle("Alteração de pedido").setContentText(mensagem).setAutoCancel(true);
-        Intent intent = new Intent(AddProdutosActivity.this, CarrinhoActivity.class);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(DetalhesProdutoActivity.this).setSmallIcon(R.drawable.ic_check_black_24dp).setContentTitle("Alteração de pedido").setContentText(mensagem).setAutoCancel(true);
+        Intent intent = new Intent(DetalhesProdutoActivity.this, CarrinhoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("Mensagem", mensagem);
-        PendingIntent pendingIntent = PendingIntent.getActivity(AddProdutosActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(DetalhesProdutoActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, builder.build());

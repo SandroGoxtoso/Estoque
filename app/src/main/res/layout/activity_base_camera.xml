@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#333333">
 
     <com.camerakit.CameraKitView
         android:id="@+id/cameraView"
@@ -40,10 +40,18 @@
 
     <Button
         android:id="@+id/btnScanCode"
-        android:layout_width="361dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/border_full_ok"
+        android:drawableRight="@drawable/ic_check_black_24dp"
+        android:fontFamily="@font/roboto_bold"
+        android:scaleType="fitCenter"
         android:text="Escanear código"
+        android:textColor="#96FF87"
+        android:textSize="11dp"
+        android:textStyle="bold"
+        android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

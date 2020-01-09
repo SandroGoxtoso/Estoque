@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.Projeto.Estock.Telas.DetalhesProdutoActivity;
+import br.com.Projeto.Estock.Model.Produto;
+import br.com.Projeto.Estock.R;
 
 public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> implements Filterable {
 
@@ -39,7 +43,7 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> im
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        holder.cv_itensPedido.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
+        holder.cv_itensPedido.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation_2));
         holder.tv_nomeProduto.setText(listaProdutosFiltrado.get(position).getNomeProduto());
         holder.tv_valorProduto.setText("R$ " + listaProdutosFiltrado.get(position).decimalFormat(listaProdutos.get(position).getSomaProduto()));
         holder.tv_qtdProduto.setText("" + listaProdutosFiltrado.get(position).getQtdProduto());
@@ -48,7 +52,7 @@ public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> im
         holder.cv_itensPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, AddProdutosActivity.class);
+                Intent intent = new Intent(context, DetalhesProdutoActivity.class);
                 intent.putExtra("NomeProduto", listaProdutosFiltrado.get(position).getNomeProduto());
                 intent.putExtra("ValorProduto", listaProdutosFiltrado.get(position).getValorProduto());
                 intent.putExtra("ValorUnitarioProduto", listaProdutosFiltrado.get(position).getValorProduto());

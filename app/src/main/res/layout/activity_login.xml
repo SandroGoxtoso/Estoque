@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradiente"
+    android:background="#333333"
     android:orientation="vertical">
 
     <ImageView
@@ -38,9 +38,8 @@
         android:id="@+id/ivSubtitle2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_regular"
-        android:lineSpacingExtra="8dp"
         android:text="O sistema de gerenciamento de estoque mais completo do mercado."
         android:textAlignment="center"
         android:textColor="#B2B5C2"
@@ -115,6 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivSubtitle2">
 
         <LinearLayout
+            android:id="@+id/ll_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -132,20 +132,22 @@
                 tools:layout_editor_absoluteY="605dp" />
 
             <EditText
-                android:id="@+id/et_usuario"
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/border_search_box"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:hint="Usuário"
+                android:hint="E-mail"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
                 android:selectAllOnFocus="false"
+                android:text="sandro.adao@hotmail.com"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#676768"
+                android:textColorLink="#FFFFFF"
                 android:textSize="14dp"
                 tools:layout_editor_absoluteX="60dp"
                 tools:layout_editor_absoluteY="595dp" />
@@ -153,6 +155,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_senha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -179,10 +182,11 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="Senha"
-                android:inputType="textPersonName|textPassword"
+                android:inputType="textPassword"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
                 android:selectAllOnFocus="false"
+                android:text="250196"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#676768"
                 android:textSize="14dp"

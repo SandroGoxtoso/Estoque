@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#333333"
     android:orientation="vertical"
-    tools:context="br.com.Projeto.Estock.CarrinhoActivity">
+    tools:context="br.com.Projeto.Estock.Telas.CarrinhoActivity">
 
     <LinearLayout
         android:id="@+id/ll_search_bar"
@@ -25,7 +25,8 @@
                 android:id="@+id/user_image"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/user_logo" />
+                android:onClick="voltarClick"
+                android:src="@mipmap/padrao" />
 
             <EditText
                 android:id="@+id/et_senha"
@@ -250,7 +251,7 @@
                             <TextView
                                 android:id="@+id/textView"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="                         " />
 
