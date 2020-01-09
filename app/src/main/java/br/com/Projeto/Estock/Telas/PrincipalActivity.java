@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -48,13 +47,13 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private static final int IMAGE_REQUEST = 1;
     Animation animation, smalltobig;
-    StorageReference refArmazenamento;
+    StorageReference storageReference;
     BounceAnimInterpolator interpolator;
     FirebaseUser usuarioFirebase;
     DatabaseReference referencia;
-    Uri fotoURL;
-    StorageTask uploadTask;
     Context context;
+    private Uri imageUri;
+    private StorageTask uploadTask;
     private ImageView iv_foto;
     private TextView tv_usuario, tv_email, tv_divisor;
     private Button btn_sair;
@@ -76,7 +75,7 @@ public class PrincipalActivity extends AppCompatActivity {
         usuarioFirebase = FirebaseAuth.getInstance().getCurrentUser();
         referencia = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioFirebase.getUid());
 
-        refArmazenamento = FirebaseStorage.getInstance().getReference("Armazenamento");
+        storageReference = FirebaseStorage.getInstance().getReference("Armazenamento");
 
         referencia.addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,12 +96,7 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
-        iv_foto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirImagem();
-            }
-        });
+        iv_foto.setOnClickListener(view -> abrirImagem());
 
     }
 
@@ -113,69 +107,69 @@ public class PrincipalActivity extends AppCompatActivity {
         startActivityForResult(intent, IMAGE_REQUEST);
     }
 
-    private String pegarExtensaoArquivo(Uri uri) {
-        ContentResolver contentResolver = getContentResolver();
+    private String getFileExtension(Uri uri) {
+        ContentResolver contentResolver = PrincipalActivity.this.getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return MimeTypeMap.getFileExtensionFromUrl(contentResolver.getType(uri));
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    private void subirImagem() {
-        final ProgressDialog pd = new ProgressDialog(context);
-        pd.setMessage("Armazendo imagem.. Aguarde!");
+    // Está com problema verifica
+    private void uploadImage() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Carregando!");
         pd.show();
 
-        if (fotoURL != null) {
-            final StorageReference arquivoReferencia = refArmazenamento.child(System.currentTimeMillis() + "." + pegarExtensaoArquivo(fotoURL));
-            uploadTask = arquivoReferencia.getFile(fotoURL);
-            uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-                    return arquivoReferencia.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri baixarUri = task.getResult();
-                        String mUri = baixarUri.toString();
+        if (imageUri != null) {
+            final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+                    + "." + getFileExtension(imageUri));
 
-                        referencia = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioFirebase.getUid());
-                        HashMap<String, Object> map = new HashMap<>();
-                        map.put("fotoURL", mUri);
-                        referencia.updateChildren(map);
-                        pd.dismiss();
-                    } else {
-                        Toast.makeText(context, "Falhou!", Toast.LENGTH_SHORT).show();
-                    }
+            uploadTask = fileReference.putFile(imageUri);
+            uploadTask.continueWithTask((Continuation<UploadTask.TaskSnapshot, Task<Uri>>) task -> {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                return fileReference.getDownloadUrl();
+            }).addOnCompleteListener((OnCompleteListener<Uri>) task -> {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    String mUri = downloadUri.toString();
+
+                    referencia = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioFirebase.getUid());
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("imageURL", "" + mUri);
+                    referencia.updateChildren(map);
+
+                    pd.dismiss();
+                } else {
+                    Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
                     pd.dismiss();
                 }
+            }).addOnFailureListener(e -> {
+                Toast.makeText(PrincipalActivity.this.getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                pd.dismiss();
             });
         } else {
-            Toast.makeText(context, "Nenhuma imagem foi selecionada!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PrincipalActivity.this.getApplicationContext(), "No image selected", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            fotoURL = data.getData();
+
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            imageUri = data.getData();
 
             if (uploadTask != null && uploadTask.isInProgress()) {
-                Toast.makeText(context, "Carregamento em progresso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Upload in preogress", Toast.LENGTH_SHORT).show();
             } else {
-                subirImagem();
+                uploadImage();
             }
         }
     }
+
 
     public void sairClick(View view) {
         FirebaseAuth.getInstance().signOut();
