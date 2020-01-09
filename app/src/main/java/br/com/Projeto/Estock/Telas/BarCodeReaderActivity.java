@@ -73,23 +73,20 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
 
     private void captureImage() {
         Log.i("imageCapture", "Started");
-        cameraKitView.captureImage(new CameraKitView.ImageCallback() {
-            @Override
-            public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
-                Log.i("imageCapture", "Processing...");
+        cameraKitView.captureImage((cameraKitView, capturedImage) -> {
+            Log.i("imageCapture", "Processing...");
 
-                final Bitmap bitmapImage = BitmapFactory.decodeByteArray(capturedImage, 0, capturedImage.length);
-                getQRCodeDetails(bitmapImage);
+            final Bitmap bitmapImage = BitmapFactory.decodeByteArray(capturedImage, 0, capturedImage.length);
+            getQRCodeDetails(bitmapImage);
 
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Log.i("imageCapture", "Running...");
-                        showPreview();
-                        imagePreview.setImageBitmap(bitmapImage);
-                    }
-                });
-                Log.i("imageCapture", "Ending...");
-            }
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    Log.i("imageCapture", "Running...");
+                    showPreview();
+                    imagePreview.setImageBitmap(bitmapImage);
+                }
+            });
+            Log.i("imageCapture", "Ending...");
         });
         Log.i("imageCapture", "Ended");
     }
@@ -146,7 +143,6 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                         if (task.getResult().size() == 0) {
                             Log.i("Código de Barras", "Código não enviado.");
                             setResult(RESULT_CANCELED);
-                            finish();
                         } else {
                             Log.i("Código de Barras", "Código enviado.");
                             FirebaseVisionBarcode barcode = task.getResult().get(0);
@@ -156,6 +152,8 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                             returnIntent.putExtra("codigo", codigo);
                             setResult(RESULT_OK, returnIntent);
                         }
+
+                        finish();
                     }
                 });
     }
