@@ -49,9 +49,9 @@ public class CadastroProduto extends AppCompatActivity {
     private AlertDialog alerta;
     private AlertDialog alerta2;
 
-    private EditText et_nomeProduto, et_valorProduto, et_qtdProduto, et_codigoBarra;
+    private EditText et_nomeProduto, et_valorProduto, et_qtdProduto, btn_codigoBarra;
     private ImageView img_Produto;
-    private Button btn_cadastrar, btn_codigoBarra, btn_carregarImagem, btn_carregarCamera;
+    private Button btn_cadastrar, btn_carregarImagem, btn_carregarCamera;
     private ImageView ibt_foto;
     private Uri uri;
     private Activity thisActivity;
@@ -114,9 +114,15 @@ public class CadastroProduto extends AppCompatActivity {
         et_nomeProduto = findViewById(R.id.et_nomeProduto);
         et_valorProduto = findViewById(R.id.et_valorProduto);
         et_qtdProduto = findViewById(R.id.et_qtdProduto);
-        et_codigoBarra = findViewById(R.id.et_codigoBarra);
         img_Produto = findViewById(R.id.img_produto);
         btn_codigoBarra = findViewById(R.id.btn_lerCodigoBarra);
+        btn_codigoBarra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lerCodigo();
+            }
+        });
+
         btn_carregarImagem = findViewById(R.id.btn_carregarImagem);
         btn_carregarCamera = findViewById(R.id.btn_carregarCamera);
 
@@ -133,16 +139,16 @@ public class CadastroProduto extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Log.d("DEBUG","onclick antes");
+                    Log.d("DEBUG", "onclick antes");
                     ActivityCompat.requestPermissions(thisActivity, new String[]{Manifest.permission.READ_CONTACTS},
                             REQUEST_CAMERA_PERMISSION
-                            );
-                    Log.d("DEBUG","onclick dps");
-                }else{
+                    );
+                    Log.d("DEBUG", "onclick dps");
+                } else {
                     boolean temCamera = getPackageManager()
                             .hasSystemFeature(PackageManager.FEATURE_CAMERA);
                     if (temCamera) {
-                       tirarFoto();
+                        tirarFoto();
                     }
                 }
             }
@@ -220,7 +226,8 @@ public class CadastroProduto extends AppCompatActivity {
             }
         }
         if (requestCode == CAPTURAR_IMAGEM) {
-            if (resultCode == RESULT_OK) {;
+            if (resultCode == RESULT_OK) {
+
 
                 Bitmap thumbnail = (BitmapFactory.decodeFile(nomeImagem));
                 thumbnail = rotationBitMap(thumbnail);
@@ -232,16 +239,22 @@ public class CadastroProduto extends AppCompatActivity {
             }
         }
 
+        if (requestCode == LEITOR_DE_CODIGO_DE_BARRA) {
+            if (resultCode == RESULT_OK) {
+                String codigoDeBarras = data.getStringExtra("codigo");
+                btn_codigoBarra.setText(codigoDeBarras);
+            }
+        }
     }
 
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
-        if (requestCode == REQUEST_CAMERA_PERMISSION){
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 tirarFoto();
-            }else{
-                Log.d("DEBUG","PERMISSÃO NEGADA");
+            } else {
+                Log.d("DEBUG", "PERMISSÃO NEGADA");
             }
         }
     }
@@ -266,6 +279,7 @@ public class CadastroProduto extends AppCompatActivity {
                 Toast.LENGTH_LONG)
                 .show();
     }
+
     private void adicionarNaGaleria() {
         Intent intent = new Intent(
                 Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -273,36 +287,27 @@ public class CadastroProduto extends AppCompatActivity {
         this.sendBroadcast(intent);
     }
 
-    public void capturarImagem(View v){
+    public void capturarImagem(View v) {
 
     }
-    public void visualizarImagem(View v){
+
+    public void visualizarImagem(View v) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "image/jpeg");
         startActivity(intent);
     }
 
-
-        /**
-         * Método que limpa os campos após o cadastro.
-         */
-
-
     /**
      * Método que limpa os campos após o cadastro.
      */
-
     public void limpaCampos() {
         et_nomeProduto.setText("");
         et_valorProduto.setText("");
         et_qtdProduto.setText("");
     }
 
-    /**
-     * Criando as variaveis que armazenam os dados e convertem para seu tipo primitivo.
-     * Criando um novo produto com as caracteristicas.
-     * O método retorna um produto.
-     */
-
-
+    public void lerCodigo() {
+        Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
+        startActivityForResult(lerCodigodeBarra, LEITOR_DE_CODIGO_DE_BARRA);
+    }
 }

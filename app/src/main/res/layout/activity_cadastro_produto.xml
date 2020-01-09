@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradiente"
-    tools:context=".CadastroProduto">
+    tools:context=".Telas.CadastroProduto">
 
 
     <TextView
@@ -98,6 +98,7 @@
             android:layout_height="48dp"
             android:layout_margin="5dp"
             android:background="@drawable/border_search_box"
+            android:clickable="true"
             android:drawableRight="@drawable/ic_settings_cell_black_24dp"
             android:fontFamily="sans-serif-medium"
             android:hint="Código de barra"

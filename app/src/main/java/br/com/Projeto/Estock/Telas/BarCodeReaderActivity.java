@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,63 +36,66 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
     /**
      * Inicia a classe BarCodeReaderActivity.
      * <p>
-     * Usa o método super.onCreate da classe BaseCameraActivity. Também define um onClickListener para
-     * o botão btnScanCode.
+     * Chama o método super.onCreate da classe BaseCameraActivity e também define um onClickListener
+     * param o botão btnScanCode.
+     * <p>
+     * Ao extendermos essa classe da BaseCameraActivity, podemos ter uma
+     * atividade especializada em ler códigos de barra, ao mesmo tempo mantendo uma classe genérica
+     * BaseCameraActivity, para outras atividades que envolvam o uso da câmera.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setupBottonSheet(R.layout.activity_barcode_reader);
-
         btnScanCode.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                cameraKitView.captureImage(new CameraKitView.ImageCallback() {
-                    @Override
-                    public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
-                        final Bitmap bitmapImage = BitmapFactory.decodeByteArray(capturedImage, 0, capturedImage.length);
-                        getQRCodeDetails(bitmapImage);
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                showPreview();
-                                imagePreview.setImageBitmap(bitmapImage);
-                            }
-                        });
-                    }
-                });
+                Log.i("onClickBtnScanCode", "Clicked");
+                captureImage();
+                Log.i("onClickBtnScanCode", "Concluded");
             }
         });
     }
 
     /**
-     * Define um onClickListener que funcionará ao clicar na Activity (qualquer lugar da tela).
+     * Detecta cliques em qualquer lugar da tela para iniciar a captura de uma imagem.
      * <p>
-     * Utiliza um método do CameraKit para capturar uma imagem, no formato byte[]. Então converte-se
-     * essa imagem para um Bitmap, que é passado para o método getQRCodeDetails(Bitmap bitmap); em
+     * Utiliza um método do CameraKit para capturar uma imagem, no formato byte[]. A imagem é
+     * convertida para um Bitmap, que é passado para o método getQRCodeDetails(Bitmap bitmap); em
      * seguida, o método showPreview() é chamado e a imagem capturada é definida como a imagem a ser
      * exibida no imagePreview.
      */
     @Override
     public void onClick(View view) {
-        /*
+        Log.i("onClickBtnScanCode", "Clicked");
+        captureImage();
+        Log.i("onClickBtnScanCode", "Concluded");
+    }
+
+    private void captureImage() {
+        Log.i("imageCapture", "Started");
         cameraKitView.captureImage(new CameraKitView.ImageCallback() {
             @Override
             public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
+                Log.i("imageCapture", "Processing...");
+
                 final Bitmap bitmapImage = BitmapFactory.decodeByteArray(capturedImage, 0, capturedImage.length);
                 getQRCodeDetails(bitmapImage);
+
                 runOnUiThread(new Runnable() {
                     public void run() {
+                        Log.i("imageCapture", "Running...");
                         showPreview();
                         imagePreview.setImageBitmap(bitmapImage);
                     }
                 });
+                Log.i("imageCapture", "Ending...");
             }
         });
-        */
+        Log.i("imageCapture", "Ended");
     }
 
     /**
-     * Escaneia o bitmap passado, utilizando o MLkit, para se extrair um código de barras.
+     * Escaneia o bitmap passado como parâmetro, utilizando o MLkit, para se extrair um código de barras.
      * <p>
      * É utilizado o FirebaseVisionBarcodeDetector, onde se define as opções (quais os tipos de
      * formato suportados); em seguida, pega-se uma instância do BarcodeDetector em si, passando as
@@ -111,6 +115,8 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
      * chamou e finaliza a activity.
      */
     private void getQRCodeDetails(Bitmap bitmap) {
+        Log.i("CodeScanner", "Started");
+
         FirebaseVisionBarcodeDetectorOptions options = new FirebaseVisionBarcodeDetectorOptions.Builder()
                 .setBarcodeFormats(
                         FirebaseVisionBarcode.FORMAT_ALL_FORMATS)
@@ -122,31 +128,33 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
         detector.detectInImage(image).addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
             @Override
             public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
-
+                Log.i("Código de Barras", "Lido com sucesso.");
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(getApplicationContext(), "Ops, algo de errado não está certo!", Toast.LENGTH_SHORT).show();
+                        Log.i("Código de Barras", "Leitura falhou.");
                     }
                 })
                 .addOnCompleteListener(new OnCompleteListener<List<FirebaseVisionBarcode>>() {
                     @Override
                     public void onComplete(@NonNull Task<List<FirebaseVisionBarcode>> task) {
-                        //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        Log.i("Código de Barras", "Leitura completada.");
 
-                        FirebaseVisionBarcode barcode = task.getResult().get(0);
-
-                        if(barcode != null) {
+                        if (task.getResult().size() == 0) {
+                            Log.i("Código de Barras", "Código não enviado.");
+                            setResult(RESULT_CANCELED);
+                            finish();
+                        } else {
+                            Log.i("Código de Barras", "Código enviado.");
+                            FirebaseVisionBarcode barcode = task.getResult().get(0);
                             String codigo = barcode.getDisplayValue();
 
                             Intent returnIntent = new Intent();
                             returnIntent.putExtra("codigo", codigo);
-                            setResult(Activity.RESULT_OK, returnIntent);
-
-                            finish();
+                            setResult(RESULT_OK, returnIntent);
                         }
                     }
                 });

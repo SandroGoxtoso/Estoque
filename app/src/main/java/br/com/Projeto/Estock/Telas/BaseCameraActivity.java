@@ -31,9 +31,7 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
     protected CameraKitView cameraKitView;
     protected ImageView imagePreview;
     protected Button btnScanCode;
-    //public BottomSheetBehavior bottomSheetBehavior;
     private ImageButton btnRetry;
-    //private ViewStub viewStub;
     private FrameLayout framePreview;
 
     /**
@@ -44,19 +42,12 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
-                PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
-                    50);
-        }
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_base_camera);
 
         btnRetry = findViewById(R.id.btnRetry);
         cameraKitView = findViewById(R.id.cameraView);
-        //viewStub = findViewById(R.id.viewStub)
         framePreview = findViewById(R.id.framePreview);
         imagePreview = findViewById(R.id.imagePreview);
         btnScanCode = findViewById(R.id.btnScanCode);
@@ -72,20 +63,11 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
         });
     }
 
-    /*
-    Código que seria utilizado para definir um elemento BottomSheet no xml, que exibiria informações
-    do código de barras lido. Removido do projeto devido a conflito de importações.
-    public void setupBottonSheet(@LayoutRes int id){
-        viewStub.setLayoutResource(id);
-        View inflatedView = viewStub.inflate();
-        //Set layout parameters for the inflated bottomsheet
-        CoordinatorLayout.LayoutParams lParam = (CoordinatorLayout.LayoutParams) inflatedView.getLayoutParams();
-        lParam.setBehavior(new BottomSheetBehavior());
-        inflatedView.setLayoutParams(lParam);
-        bottomSheetBehavior = BottomSheetBehavior.from(inflatedView);
-        bottomSheetBehavior.setPeekHeight(224);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        cameraKitView.onStart();
     }
-    */
 
     /**
      * Método chamado quando a atividade é resumida, iniciando o preview da câmera.
@@ -93,7 +75,7 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
     @Override
     protected void onResume() {
         super.onResume();
-        cameraKitView.onStart();
+        cameraKitView.onResume();
     }
 
     /**
@@ -104,6 +86,18 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
     protected void onPause() {
         cameraKitView.onPause();
         super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        cameraKitView.onStop();
+        super.onStop();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        cameraKitView.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     /**

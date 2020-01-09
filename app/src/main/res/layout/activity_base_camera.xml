@@ -10,6 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:keepScreenOn="true"
+        app:camera_flash="auto"
+        app:camera_facing="back"
+        app:camera_focus="continuous"
+        app:camera_permissions="camera"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
