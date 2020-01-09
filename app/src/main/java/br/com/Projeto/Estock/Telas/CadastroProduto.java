@@ -47,10 +47,9 @@ public class CadastroProduto extends AppCompatActivity {
     private AlertDialog alerta;
     private AlertDialog alerta2;
 
-    private EditText et_nomeProduto, et_valorProduto, et_qtdProduto, et_codigoBarra;
+    private EditText et_nomeProduto, et_qtdProduto, et_valorProduto, btn_lerCodigoBarra;
     private ImageView img_Produto;
-    private Button btn_cadastrar, btn_codigoBarra, btn_carregarImagem, btn_carregarCamera;
-    private ImageView ibt_foto;
+    private Button btn_carregarImagem, btn_carregarCamera, btn_cadastrar;
     private Uri uri;
     private Activity thisActivity;
     private String nomeImagem;
@@ -112,11 +111,10 @@ public class CadastroProduto extends AppCompatActivity {
         et_nomeProduto = findViewById(R.id.et_nomeProduto);
         et_valorProduto = findViewById(R.id.et_valorProduto);
         et_qtdProduto = findViewById(R.id.et_qtdProduto);
-        et_codigoBarra = findViewById(R.id.et_codigoBarra);
         img_Produto = findViewById(R.id.img_produto);
-        btn_codigoBarra = findViewById(R.id.btn_lerCodigoBarra);
         btn_carregarImagem = findViewById(R.id.btn_carregarImagem);
         btn_carregarCamera = findViewById(R.id.btn_carregarCamera);
+        btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
 
         btn_cadastrar = findViewById(R.id.btn_cadastrar);
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {

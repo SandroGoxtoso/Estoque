@@ -9,7 +9,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -214,53 +212,6 @@ public class CarrinhoActivity extends AppCompatActivity {
         btn_addProduto.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(1500).start();
     }
 
-    public void ratingClick(View view) {
-        final RatingDialog ratingDialog = new RatingDialog.Builder(this)
-                .icon(getDrawable(R.drawable.ic_add_circle_outline_black_24dp))
-                .session(7)
-                .threshold(3)
-                .title("How was your experience with us?")
-                .titleTextColor(R.color.black)
-                .positiveButtonText("Not Now")
-                .negativeButtonText("Never")
-                .positiveButtonTextColor(R.color.white)
-                .negativeButtonTextColor(R.color.grey_500)
-                .formTitle("Submit Feedback")
-                .formHint("Tell us where we can improve")
-                .formSubmitText("Submit")
-                .formCancelText("Cancel")
-                .ratingBarColor(R.color.colorPrimary)
-                .playstoreUrl("YOUR_URL")
-                .onThresholdCleared(new RatingDialog.Builder.RatingThresholdClearedListener() {
-                    @Override
-                    public void onThresholdCleared(RatingDialog ratingDialog, float rating, boolean thresholdCleared) {
-                        //do something
-                        ratingDialog.dismiss();
-                    }
-                })
-                .onThresholdFailed(new RatingDialog.Builder.RatingThresholdFailedListener() {
-                    @Override
-                    public void onThresholdFailed(RatingDialog ratingDialog, float rating, boolean thresholdCleared) {
-                        //do something
-                        ratingDialog.dismiss();
-                    }
-                })
-                .onRatingChanged(new RatingDialog.Builder.RatingDialogListener() {
-                    @Override
-                    public void onRatingSelected(float rating, boolean thresholdCleared) {
-
-                    }
-                })
-                .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
-                    @Override
-                    public void onFormSubmitted(String feedback) {
-
-                    }
-                }).build();
-
-        ratingDialog.show();
-
-    }
 
     public void voltarClick(View view) {
         Intent ax = new Intent(CarrinhoActivity.this, PrincipalActivity.class);
