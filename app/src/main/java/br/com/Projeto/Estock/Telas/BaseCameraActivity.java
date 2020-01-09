@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Telas;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -16,6 +16,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.camerakit.CameraKitView;
+
+import br.com.Projeto.Estock.R;
 
 /**
  * Classe base usada para capturar imagem com a câmera, utilizando a biblioteca CameraKit.

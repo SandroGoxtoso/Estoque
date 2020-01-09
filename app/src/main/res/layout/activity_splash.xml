@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
-    tools:context=".SplashActivity">
+    tools:context=".Telas.SplashActivity">
 
 
     <pl.droidsonroids.gif.GifTextView
@@ -34,7 +34,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
-        android:lineSpacingExtra="8dp"
         android:text="O sistema de gerenciamento de estoque mais completo do mercado."
         android:textAlignment="center"
         android:textColor="#B2B5C2"

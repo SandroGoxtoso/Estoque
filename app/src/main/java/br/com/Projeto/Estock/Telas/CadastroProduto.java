@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Telas;
 
 import android.Manifest;
 import android.app.Activity;
@@ -28,6 +28,8 @@ import androidx.core.content.FileProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+
+import br.com.Projeto.Estock.R;
 
 public class CadastroProduto extends AppCompatActivity {
 

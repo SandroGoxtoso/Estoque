@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Model;
 
 import java.text.DecimalFormat;
 

@@ -1,4 +1,4 @@
-package br.com.Projeto.Estock;
+package br.com.Projeto.Estock.Telas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.Projeto.Estock.Adapter.ItemPedido;
+import br.com.Projeto.Estock.Model.Produto;
+import br.com.Projeto.Estock.R;
+
 public class CarrinhoActivity extends AppCompatActivity {
 
     List<Produto> listaProdutos;
@@ -45,7 +49,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_carrinho);
 
         iniciaAnimacao();
 
@@ -218,6 +222,12 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         ratingDialog.show();
 
+    }
+
+    public void voltarClick(View view) {
+        Intent ax = new Intent(CarrinhoActivity.this, PrincipalActivity.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
 
     public void cadastrarClick(View v) {

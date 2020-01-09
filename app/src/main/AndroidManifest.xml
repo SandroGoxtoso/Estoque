@@ -4,13 +4,12 @@
     android:installLocation="preferExternal">
 
     <permission android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-
-
 
     <application
         android:allowBackup="true"
@@ -19,13 +18,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-        <activity android:name=".RegistroActivity"></activity>
-        <activity android:name=".BaseCameraActivity" />
-        <activity android:name=".BarCodeReaderActivity" />
-        <activity android:name=".CadastroProduto" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".Telas.PrincipalActivity"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".Telas.RegistroActivity" />
+        <activity android:name=".Telas.BaseCameraActivity" />
+        <activity android:name=".Telas.BarCodeReaderActivity" />
+        <activity android:name=".Telas.CadastroProduto" />
+        <activity android:name=".Telas.LoginActivity" />
+        <activity android:name=".Telas.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +37,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CarrinhoActivity"
+            android:name=".Telas.CarrinhoActivity"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Telas.DetalhesProdutoActivity" />
 
-        <activity android:name="br.com.Projeto.Estock.AddProdutosActivity" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -44,10 +48,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-
-        
     </application>
 
 </manifest>
