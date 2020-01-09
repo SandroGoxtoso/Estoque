@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +25,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import br.com.Projeto.Estock.R;
@@ -133,16 +131,16 @@ public class CadastroProduto extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Log.d("DEBUG","onclick antes");
+                    Log.d("DEBUG", "onclick antes");
                     ActivityCompat.requestPermissions(thisActivity, new String[]{Manifest.permission.READ_CONTACTS},
                             REQUEST_CAMERA_PERMISSION
-                            );
-                    Log.d("DEBUG","onclick dps");
-                }else{
+                    );
+                    Log.d("DEBUG", "onclick dps");
+                } else {
                     boolean temCamera = getPackageManager()
                             .hasSystemFeature(PackageManager.FEATURE_CAMERA);
                     if (temCamera) {
-                       tirarFoto();
+                        tirarFoto();
                     }
                 }
             }
@@ -220,7 +218,8 @@ public class CadastroProduto extends AppCompatActivity {
             }
         }
         if (requestCode == CAPTURAR_IMAGEM) {
-            if (resultCode == RESULT_OK) {;
+            if (resultCode == RESULT_OK) {
+                ;
 
                 Bitmap thumbnail = (BitmapFactory.decodeFile(nomeImagem));
                 thumbnail = rotationBitMap(thumbnail);
@@ -236,12 +235,12 @@ public class CadastroProduto extends AppCompatActivity {
 
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
-        if (requestCode == REQUEST_CAMERA_PERMISSION){
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 tirarFoto();
-            }else{
-                Log.d("DEBUG","PERMISSÃO NEGADA");
+            } else {
+                Log.d("DEBUG", "PERMISSÃO NEGADA");
             }
         }
     }
@@ -266,6 +265,7 @@ public class CadastroProduto extends AppCompatActivity {
                 Toast.LENGTH_LONG)
                 .show();
     }
+
     private void adicionarNaGaleria() {
         Intent intent = new Intent(
                 Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -273,19 +273,20 @@ public class CadastroProduto extends AppCompatActivity {
         this.sendBroadcast(intent);
     }
 
-    public void capturarImagem(View v){
+    public void capturarImagem(View v) {
 
     }
-    public void visualizarImagem(View v){
+
+    public void visualizarImagem(View v) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "image/jpeg");
         startActivity(intent);
     }
 
 
-        /**
-         * Método que limpa os campos após o cadastro.
-         */
+    /**
+     * Método que limpa os campos após o cadastro.
+     */
 
 
     /**
@@ -304,5 +305,10 @@ public class CadastroProduto extends AppCompatActivity {
      * O método retorna um produto.
      */
 
+    public void voltarClick(View view) {
+        Intent ax = new Intent(CadastroProduto.this, PrincipalActivity.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fright, R.anim.fhelper2);
+    }
 
 }

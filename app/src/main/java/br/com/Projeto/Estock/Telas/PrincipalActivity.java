@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +24,6 @@ import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,6 +59,7 @@ public class PrincipalActivity extends AppCompatActivity {
     private Button btn_sair;
     private LinearLayout ll_pedido, ll_estoque, ll_conta, ll_estatistica;
     private CardView cv_menu;
+    private ImageButton ib_admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class PrincipalActivity extends AppCompatActivity {
         tv_usuario = findViewById(R.id.tv_usuario);
         tv_email = findViewById(R.id.tv_email);
         btn_sair = findViewById(R.id.btn_sair);
+        ib_admin = findViewById(R.id.ib_admin);
 
         usuarioFirebase = FirebaseAuth.getInstance().getCurrentUser();
         referencia = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioFirebase.getUid());

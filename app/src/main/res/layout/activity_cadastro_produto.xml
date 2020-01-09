@@ -4,9 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradiente"
-    tools:context=".CadastroProduto">
+    android:background="#333333"
+    tools:context=".Telas.CadastroProduto">
 
+    <LinearLayout
+        android:id="@+id/ll_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#333333"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_foto"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:onClick="voltarClick"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/padrao" />
+
+            <EditText
+                android:id="@+id/et_senha"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:background="@drawable/border_search_box"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:drawableRight="@drawable/ic_close_black_24dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Pesquise pelo produto..."
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:selectAllOnFocus="false"
+                android:textColor="#B2B5C2"
+                android:textColorHint="#B2B5C2"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_cadastrar"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/border_full_ok"
+        android:drawableRight="@drawable/ic_check_black_24dp"
+        android:fontFamily="@font/roboto_bold"
+        android:scaleType="fitCenter"
+        android:text="Cadastrar"
+        android:textColor="#96FF87"
+        android:textSize="11dp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
@@ -22,6 +88,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
+    <TextView
+        android:id="@+id/tv_linha2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/border_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_search_bar" />
+
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
@@ -30,7 +105,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tv_linha2">
 
         <LinearLayout
             android:layout_width="200dp"
@@ -38,38 +113,39 @@
             android:orientation="vertical">
 
             <Button
-
                 android:id="@+id/btn_carregarImagem"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
-                android:background="@drawable/border_full_4"
-                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/border_full_3"
+                android:drawableRight="@drawable/ic_photo_library_black_24dp"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
+                android:paddingRight="20dp"
                 android:text="Galeria"
-                android:textAllCaps="false"
-                android:textColor="#B2B5C2"
-                android:textColorHint="#B2B5C2"
-                android:textSize="15dp"
-                tools:layout_editor_absoluteX="27dp"
-                tools:layout_editor_absoluteY="320dp" />
+                android:textColor="#8CB0FF"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="320dp" />
 
             <Button
 
                 android:id="@+id/btn_carregarCamera"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_centerHorizontal="true"
+                android:layout_centerHorizontal="false"
                 android:layout_margin="10dp"
-                android:background="@drawable/border_full_4"
-                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/border_full_3"
+                android:drawableRight="@drawable/ic_photo_camera_black_24dp"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
-                android:text="Camera"
+                android:paddingRight="20dp"
+                android:text="CAMERA"
                 android:textAllCaps="false"
-                android:textColor="#B2B5C2"
-                android:textColorHint="#B2B5C2"
-                android:textSize="15dp"
+                android:textColor="#8CB0FF"
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="27dp"
                 tools:layout_editor_absoluteY="378dp" />
         </LinearLayout>
@@ -96,16 +172,16 @@
             android:id="@+id/btn_lerCodigoBarra"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:background="@drawable/border_search_box"
             android:drawableRight="@drawable/ic_settings_cell_black_24dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_regular"
             android:hint="Código de barra"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textColor="#B2B5C2"
-            android:textColorHint="#B2B5C2"
-            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#676768"
+            android:textSize="14dp"
             tools:layout_editor_absoluteX="85dp"
             tools:layout_editor_absoluteY="229dp" />
 
@@ -126,11 +202,11 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10">
@@ -141,67 +217,55 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/border_search_box"
-            android:fontFamily="sans-serif-medium"
-            android:hint="Prooduto"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="Produto"
             android:inputType="numberDecimal"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textColor="#B2B5C2"
-            android:textColorHint="#B2B5C2"
-            android:textSize="15dp" />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#676768"
+            android:textSize="14dp" />
 
         <EditText
             android:id="@+id/et_qtdProduto"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/border_search_box"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_regular"
             android:hint="Quantidade"
             android:inputType="numberDecimal"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textColorHint="#B2B5C2"
-            android:textSize="15dp" />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#676768"
+            android:textSize="14dp" />
 
         <EditText
             android:id="@+id/et_valorProduto"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/border_search_box"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_regular"
             android:hint="Preço do produto"
             android:inputType="text|numberDecimal"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:textColor="#B2B5C2"
-            android:textColorHint="#B2B5C2"
-            android:textSize="15dp" />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#676768"
+            android:textSize="14dp" />
 
-        <Button
-
-            android:id="@+id/btn_cadastrar"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/border_full_4"
-            android:fontFamily="sans-serif-medium"
-            android:paddingLeft="70dp"
-            android:paddingRight="70dp"
-            android:text="Cadastrar"
-            android:textAllCaps="false"
-            android:textColor="#B2B5C2"
-            android:textColorHint="#B2B5C2"
-            android:textSize="15dp" />
     </LinearLayout>
 
 

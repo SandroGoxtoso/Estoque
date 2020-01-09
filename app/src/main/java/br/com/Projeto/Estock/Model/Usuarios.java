@@ -5,14 +5,25 @@ public class Usuarios {
     private String usuario;
     private String email;
     private String foto;
+    private String permissao;
 
     public Usuarios() {
     }
 
-    public Usuarios(String id, String usuario, String email, String foto) {
+    public Usuarios(String id, String usuario, String email, String foto, String permissao) {
         this.id = id;
         this.usuario = usuario;
         this.foto = foto;
+        this.email = email;
+        this.permissao = permissao;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
     }
 
     public String getId() {

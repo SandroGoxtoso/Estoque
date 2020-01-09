@@ -66,6 +66,7 @@ public class RegistroActivity extends AppCompatActivity {
                 hashMap.put("usuario", usuario);
                 hashMap.put("email", email);
                 hashMap.put("foto", "padrao");
+                hashMap.put("permisao", "usuario");
 
                 referencia.setValue(hashMap).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
