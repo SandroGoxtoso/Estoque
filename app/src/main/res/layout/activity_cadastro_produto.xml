@@ -197,7 +197,7 @@
             android:fontFamily="sans-serif-medium"
             android:paddingLeft="70dp"
             android:paddingRight="70dp"
-            android:text="Cadastrar meu ovo"
+            android:text="Cadastrar"
             android:textAllCaps="false"
             android:textColor="#B2B5C2"
             android:textColorHint="#B2B5C2"
