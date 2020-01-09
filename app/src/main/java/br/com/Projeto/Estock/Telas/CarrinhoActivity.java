@@ -33,7 +33,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.Projeto.Estock.Adapter.ItemPedido;
+import br.com.Projeto.Estock.Adapter.ItemPedidoAdapter;
 import br.com.Projeto.Estock.Model.Produto;
 import br.com.Projeto.Estock.Model.Usuarios;
 import br.com.Projeto.Estock.R;
@@ -82,7 +82,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         tv_totalQuantidade.setText(String.valueOf(somaQtd()));
 
         RecyclerView mrcv_lista_jogos = findViewById(R.id.rcv_itens_pedido);
-        ItemPedido myAdapter = new ItemPedido(this, listaProdutos);
+        ItemPedidoAdapter myAdapter = new ItemPedidoAdapter(this, listaProdutos);
 
         et_barraPesquisa = findViewById(R.id.et_senha);
         et_barraPesquisa.addTextChangedListener(new TextWatcher() {

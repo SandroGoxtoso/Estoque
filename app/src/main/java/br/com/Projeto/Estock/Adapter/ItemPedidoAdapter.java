@@ -21,13 +21,13 @@ import br.com.Projeto.Estock.Telas.DetalhesProdutoActivity;
 import br.com.Projeto.Estock.Model.Produto;
 import br.com.Projeto.Estock.R;
 
-public class ItemPedido extends RecyclerView.Adapter<ItemPedido.MyViewHolder> implements Filterable {
+public class ItemPedidoAdapter extends RecyclerView.Adapter<ItemPedidoAdapter.MyViewHolder> implements Filterable {
 
     private static List<Produto> listaProdutos;
     private static List<Produto> listaProdutosFiltrado;
     private Context context;
 
-    public ItemPedido(Context context, List<Produto> listaJogos) {
+    public ItemPedidoAdapter(Context context, List<Produto> listaJogos) {
         this.context = context;
         this.listaProdutos = listaJogos;
         this.listaProdutosFiltrado = listaJogos;
