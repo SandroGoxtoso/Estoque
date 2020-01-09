@@ -102,7 +102,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private void abrirImagem() {
         Intent intent = new Intent();
-        intent.setType("Images/*");
+        intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, IMAGE_REQUEST);
     }
@@ -137,7 +137,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                     referencia = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioFirebase.getUid());
                     HashMap<String, Object> map = new HashMap<>();
-                    map.put("imageURL", "" + mUri);
+                    map.put("foto", "" + mUri);
                     referencia.updateChildren(map);
 
                     pd.dismiss();
