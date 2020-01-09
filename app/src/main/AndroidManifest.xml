@@ -41,6 +41,11 @@
             android:name=".Telas.CarrinhoActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Telas.DetalhesProdutoActivity" />
+        <activity
+            android:name=".Adapter.Retrato"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

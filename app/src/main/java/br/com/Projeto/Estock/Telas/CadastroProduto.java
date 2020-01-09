@@ -25,8 +25,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import java.io.File;
 
+import br.com.Projeto.Estock.Adapter.Retrato;
 import br.com.Projeto.Estock.R;
 
 public class CadastroProduto extends AppCompatActivity {
@@ -308,5 +311,6 @@ public class CadastroProduto extends AppCompatActivity {
         startActivity(ax);
         overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
+    
 
 }
