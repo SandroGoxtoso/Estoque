@@ -102,7 +102,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private void abrirImagem() {
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("Images/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, IMAGE_REQUEST);
     }
@@ -142,7 +142,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                     pd.dismiss();
                 } else {
-                    Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Falhou!", Toast.LENGTH_SHORT).show();
                     pd.dismiss();
                 }
             }).addOnFailureListener(e -> {
@@ -150,7 +150,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 pd.dismiss();
             });
         } else {
-            Toast.makeText(PrincipalActivity.this.getApplicationContext(), "No image selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Nenhuma imagem selecionada!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -163,7 +163,7 @@ public class PrincipalActivity extends AppCompatActivity {
             imageUri = data.getData();
 
             if (uploadTask != null && uploadTask.isInProgress()) {
-                Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Upload in preogress", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PrincipalActivity.this.getApplicationContext(), "Upload em processo!", Toast.LENGTH_SHORT).show();
             } else {
                 uploadImage();
             }
