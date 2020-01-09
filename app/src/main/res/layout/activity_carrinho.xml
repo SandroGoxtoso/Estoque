@@ -26,6 +26,7 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:onClick="voltarClick"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/padrao" />
 
             <EditText

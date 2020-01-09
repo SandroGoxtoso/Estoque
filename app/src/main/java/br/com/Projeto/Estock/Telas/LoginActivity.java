@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageView btn_voltar, ivLogo;
     Animation smalltobig, fade_scale_transition;
     LinearLayout ll_email, ll_senha;
-    TextView ivSubtitle, ivSubtitle2;
+    TextView ivSubtitle, ivSubtitle2, tv_esqueceu_senha;
     EditText et_email, et_senha;
 
     FirebaseAuth autenticador;
@@ -39,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         autenticador = FirebaseAuth.getInstance();
         et_email = findViewById(R.id.et_email);
         et_senha = findViewById(R.id.et_senha);
+        tv_esqueceu_senha = findViewById(R.id.tv_esqueceu_senha);
+
     }
 
     public void acessarConta(View view) {
@@ -71,6 +73,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void recuperarSenhaClick(View view) {
+        Intent ax = new Intent(LoginActivity.this, RecuperaSenhaActivity.class);
+        startActivity(ax);
+        overridePendingTransition(R.anim.fleft, R.anim.fhelper);
+    }
+
     public void voltarClick(View v) {
         Intent ax = new Intent(LoginActivity.this, SplashActivity.class);
         startActivity(ax);
@@ -90,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_voltar = findViewById(R.id.btn_voltar);
         ll_email = findViewById(R.id.ll_email);
         ll_senha = findViewById(R.id.ll_senha);
+        tv_esqueceu_senha = findViewById(R.id.tv_esqueceu_senha);
 
         ivLogo.startAnimation(smalltobig);
 
@@ -101,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_voltar.setTranslationX(-400);
         ll_email.setTranslationX(-800);
         ll_senha.setTranslationX(-800);
+        tv_esqueceu_senha.setTranslationX(800);
 
         ivSubtitle.setAlpha(0);
         ivSubtitle2.setAlpha(0);
@@ -108,12 +118,14 @@ public class LoginActivity extends AppCompatActivity {
         btn_signin.setAlpha(0);
         ll_email.setAlpha(0);
         ll_senha.setAlpha(0);
+        tv_esqueceu_senha.setAlpha(0);
 
         ivLogo.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         ivSubtitle.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(700).start();
         ivSubtitle2.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(900).start();
         ll_email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1200).start();
         ll_senha.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1400).start();
+        tv_esqueceu_senha.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1600).start();
         btn_login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(2000).start();
         btn_signin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(2000).start();
         btn_voltar.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();

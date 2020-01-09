@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/logo1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Telas.PrincipalActivity"></activity>
+        <activity android:name=".Telas.RecuperaSenhaActivity" />
+        <activity android:name=".Telas.PrincipalActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

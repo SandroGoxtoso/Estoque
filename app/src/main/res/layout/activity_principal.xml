@@ -11,6 +11,7 @@
         android:layout_height="100dp"
         android:layout_gravity="right"
         android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
         android:src="@mipmap/padrao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,6 +135,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/border_full_4"
                         android:onClick="carrinhoClick"
+                        android:scaleType="fitCenter"
                         android:textAlignment="center"
                         app:srcCompat="@drawable/carrinho" />
 
