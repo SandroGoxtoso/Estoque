@@ -96,6 +96,7 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
      * chamou e finaliza a activity.
      */
     private void getQRCodeDetails(Bitmap bitmap) {
+        //TODO: utilizar o Analyzer para detectar o código de barras diretamente no preview (sem bater foto)
         Log.i("CodeScanner", "Started");
 
         FirebaseVisionBarcodeDetectorOptions options = new FirebaseVisionBarcodeDetectorOptions.Builder()
