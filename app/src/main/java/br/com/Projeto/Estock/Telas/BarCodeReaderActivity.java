@@ -1,17 +1,17 @@
 package br.com.Projeto.Estock.Telas;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureConfig;
+import androidx.camera.core.ImageProxy;
 
-import com.camerakit.CameraKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,49 +46,33 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected ImageCapture setImageCapture() {
+        ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder().setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
+                .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
+        ImageCapture imgCapture = new ImageCapture(imageCaptureConfig);
 
         btnScanCode.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Log.i("onClickBtnScanCode", "Clicked");
-                captureImage();
-                Log.i("onClickBtnScanCode", "Concluded");
+            @Override
+            public void onClick(View v) {
+                imgCapture.takePicture(new ImageCapture.OnImageCapturedListener() {
+                    @Override
+                    public void onCaptureSuccess(ImageProxy image, int rotationDegrees) {
+                        Bitmap bitmap = textureView.getBitmap();
+                        getQRCodeDetails(bitmap);
+                    }
+
+                    @Override
+                    public void onError(ImageCapture.UseCaseError useCaseError, String message, @Nullable Throwable cause) {
+                        super.onError(useCaseError, message, cause);
+                    }
+                });
             }
         });
-    }
 
-    /**
-     * Detecta cliques em qualquer lugar da tela para iniciar a captura de uma imagem.
-     * <p>
-     * Utiliza um método do CameraKit para capturar uma imagem, no formato byte[]. A imagem é
-     * convertida para um Bitmap, que é passado para o método getQRCodeDetails(Bitmap bitmap); em
-     * seguida, o método showPreview() é chamado e a imagem capturada é definida como a imagem a ser
-     * exibida no imagePreview.
-     */
-    @Override
-    public void onClick(View view) {
-        Log.i("onClickBtnScanCode", "Clicked");
-        captureImage();
-        Log.i("onClickBtnScanCode", "Concluded");
-    }
-
-    private void captureImage() {
-        Log.i("imageCapture", "Started");
-        cameraKitView.captureImage((cameraKitView, capturedImage) -> {
-            Log.i("imageCapture", "Processing...");
-
-            final Bitmap bitmapImage = BitmapFactory.decodeByteArray(capturedImage, 0, capturedImage.length);
-            getQRCodeDetails(bitmapImage);
-
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    Log.i("imageCapture", "Running...");
-                    showPreview();
-                    imagePreview.setImageBitmap(bitmapImage);
-                }
-            });
-            Log.i("imageCapture", "Ending...");
-        });
-        Log.i("imageCapture", "Ended");
+        return imgCapture;
     }
 
     /**
@@ -152,7 +136,6 @@ public class BarCodeReaderActivity extends BaseCameraActivity {
                             returnIntent.putExtra("codigo", codigo);
                             setResult(RESULT_OK, returnIntent);
                         }
-
                         finish();
                     }
                 });
