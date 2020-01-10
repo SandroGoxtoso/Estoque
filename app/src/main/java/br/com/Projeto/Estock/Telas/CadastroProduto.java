@@ -298,6 +298,7 @@ public class CadastroProduto extends AppCompatActivity {
         intentIntegrator.setCaptureActivity(Retrato.class);
         intentIntegrator.setOrientationLocked(false);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        intentIntegrator.setPrompt("");
         intentIntegrator.initiateScan();
     }
 

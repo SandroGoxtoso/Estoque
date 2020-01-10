@@ -3,7 +3,6 @@ package br.com.Projeto.Estock.Telas;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
