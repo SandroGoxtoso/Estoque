@@ -25,13 +25,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
 import java.io.File;
 
-import br.com.Projeto.Estock.Adapter.Retrato;
+//import br.com.Projeto.Estock.Adapter.Retrato;
 import br.com.Projeto.Estock.R;
 
 public class CadastroProduto extends AppCompatActivity {
@@ -117,6 +113,14 @@ public class CadastroProduto extends AppCompatActivity {
         et_valorProduto = findViewById(R.id.et_valorProduto);
         et_qtdProduto = findViewById(R.id.et_qtdProduto);
         img_Produto = findViewById(R.id.img_produto);
+        btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
+        btn_lerCodigoBarra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lerCodigo();
+            }
+        });
+
         btn_carregarCamera = findViewById(R.id.btn_carregarCamera);
         btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
 
@@ -217,7 +221,8 @@ public class CadastroProduto extends AppCompatActivity {
                 mostrarMensagem("Imagem não capturada!");
             }
         }
-        EditText btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
+
+        /*EditText btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
@@ -226,7 +231,14 @@ public class CadastroProduto extends AppCompatActivity {
                 btn_lerCodigoBarra.setText(result.getContents());
             }
         }
+        */
 
+        if (requestCode == LEITOR_DE_CODIGO_DE_BARRA) {
+            if (resultCode == RESULT_OK) {
+                String codigoDeBarras = data.getStringExtra("codigo");
+                btn_lerCodigoBarra.setText(codigoDeBarras);
+            }
+        }
     }
 
     public void onRequestPermissionsResult(int requestCode,
@@ -279,16 +291,9 @@ public class CadastroProduto extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     /**
      * Método que limpa os campos após o cadastro.
      */
-
-
-    /**
-     * Método que limpa os campos após o cadastro.
-     */
-
     public void limpaCampos() {
         et_nomeProduto.setText("");
         et_valorProduto.setText("");
@@ -307,6 +312,7 @@ public class CadastroProduto extends AppCompatActivity {
         overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
 
+    /*
     public void scanearCodigo(View view) {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         intentIntegrator.setCaptureActivity(Retrato.class);
@@ -315,6 +321,10 @@ public class CadastroProduto extends AppCompatActivity {
         intentIntegrator.setPrompt("");
         intentIntegrator.initiateScan();
     }
+    */
 
-
+    public void lerCodigo() {
+        Intent lerCodigodeBarra = new Intent(this, BarCodeReaderActivity.class);
+        startActivityForResult(lerCodigodeBarra, LEITOR_DE_CODIGO_DE_BARRA);
+    }
 }

@@ -1,21 +1,32 @@
 package br.com.Projeto.Estock.Telas;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Rational;
+import android.util.Size;
+import android.view.Surface;
+import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.CameraX;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureConfig;
+import androidx.camera.core.ImageProxy;
+import androidx.camera.core.Preview;
+import androidx.camera.core.PreviewConfig;
+import androidx.camera.core.UseCaseConfig;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import com.camerakit.CameraKitView;
+import androidx.lifecycle.LifecycleOwner;
 
 import br.com.Projeto.Estock.R;
 
@@ -27,14 +38,16 @@ import br.com.Projeto.Estock.R;
  * @Author André G. Theilacker <andretheilacker@gmail.com>
  * @Since 1.1.0
  */
-public abstract class BaseCameraActivity extends AppCompatActivity implements View.OnClickListener {
-    protected CameraKitView cameraKitView;
-    protected ImageView imagePreview;
+public abstract class BaseCameraActivity extends AppCompatActivity {
     protected Button btnScanCode;
-    //public BottomSheetBehavior bottomSheetBehavior;
-    private ImageButton btnRetry;
-    //private ViewStub viewStub;
-    private FrameLayout framePreview;
+    protected TextureView textureView;
+
+    protected ImageCapture imageCapture;
+    protected ImageAnalysis imageAnalysis;
+    protected Preview preview;
+
+    private int REQUEST_CODE_PERMISSIONS = 101;
+    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
 
     /**
      * Inicia a classe BaseCameraActivity.
@@ -44,83 +57,129 @@ public abstract class BaseCameraActivity extends AppCompatActivity implements Vi
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
-                PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
-                    50);
-        }
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_base_camera);
 
-        btnRetry = findViewById(R.id.btnRetry);
-        cameraKitView = findViewById(R.id.cameraView);
-        //viewStub = findViewById(R.id.viewStub)
-        framePreview = findViewById(R.id.framePreview);
-        imagePreview = findViewById(R.id.imagePreview);
+        textureView = findViewById(R.id.view_finder);
         btnScanCode = findViewById(R.id.btnScanCode);
 
-        btnRetry.setOnClickListener(new View.OnClickListener() {
+        if (allPermissionsGranted()) {
+            startCamera(); //start camera if permission has been granted by user
+        } else {
+            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+        }
+    }
+
+    protected void startCamera() {
+        CameraX.unbindAll();
+
+        preview = setPreview();
+        imageCapture = setImageCapture();
+
+        //bind to lifecycle:
+        CameraX.bindToLifecycle(this, preview, imageCapture);
+    }
+
+    protected Preview setPreview() {
+
+        Rational aspectRatio = new Rational(textureView.getWidth(), textureView.getHeight());
+        Size screen = new Size(textureView.getWidth(), textureView.getHeight()); //size of the screen
+
+        PreviewConfig pConfig = new PreviewConfig.Builder().setTargetAspectRatio(aspectRatio).setTargetResolution(screen).build();
+        Preview preview = new Preview(pConfig); //lets build it
+
+        //to update the surface texture we  have to destroy it first then re-add it
+        preview.setOnPreviewOutputUpdateListener(
+                output -> {
+                    ViewGroup parent = (ViewGroup) textureView.getParent();
+                    parent.removeView(textureView);
+                    parent.addView(textureView, 0);
+
+                    textureView.setSurfaceTexture(output.getSurfaceTexture());
+                    updateTransform();
+                });
+
+        return preview;
+    }
+
+    protected ImageCapture setImageCapture() {
+        ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder().setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
+                .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
+        ImageCapture imgCapture = new ImageCapture(imageCaptureConfig);
+
+        btnScanCode.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                if (cameraKitView.getVisibility() == View.VISIBLE) {
-                    showPreview();
-                } else {
-                    hidePreview();
-                }
+                imgCapture.takePicture(new ImageCapture.OnImageCapturedListener() {
+                    @Override
+                    public void onCaptureSuccess(ImageProxy image, int rotationDegrees) {
+
+                    }
+
+                    @Override
+                    public void onError(ImageCapture.UseCaseError useCaseError, String message, @Nullable Throwable cause) {
+                        super.onError(useCaseError, message, cause);
+                    }
+                });
             }
         });
+
+        return imgCapture;
     }
 
-    /*
-    Código que seria utilizado para definir um elemento BottomSheet no xml, que exibiria informações
-    do código de barras lido. Removido do projeto devido a conflito de importações.
-    public void setupBottonSheet(@LayoutRes int id){
-        viewStub.setLayoutResource(id);
-        View inflatedView = viewStub.inflate();
-        //Set layout parameters for the inflated bottomsheet
-        CoordinatorLayout.LayoutParams lParam = (CoordinatorLayout.LayoutParams) inflatedView.getLayoutParams();
-        lParam.setBehavior(new BottomSheetBehavior());
-        inflatedView.setLayoutParams(lParam);
-        bottomSheetBehavior = BottomSheetBehavior.from(inflatedView);
-        bottomSheetBehavior.setPeekHeight(224);
-    }
-    */
+    protected void updateTransform() {
+        Matrix mx = new Matrix();
+        float w = textureView.getMeasuredWidth();
+        float h = textureView.getMeasuredHeight();
 
-    /**
-     * Método chamado quando a atividade é resumida, iniciando o preview da câmera.
-     */
+        float cX = w / 2f;
+        float cY = h / 2f;
+
+        int rotationDgr;
+        int rotation = (int) textureView.getRotation();
+
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                rotationDgr = 0;
+                break;
+            case Surface.ROTATION_90:
+                rotationDgr = 90;
+                break;
+            case Surface.ROTATION_180:
+                rotationDgr = 180;
+                break;
+            case Surface.ROTATION_270:
+                rotationDgr = 270;
+                break;
+            default:
+                return;
+        }
+
+        mx.postRotate((float) rotationDgr, cX, cY);
+        textureView.setTransform(mx);
+    }
+
     @Override
-    protected void onResume() {
-        super.onResume();
-        cameraKitView.onStart();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                startCamera();
+            } else {
+                Toast.makeText(this, "Permissions not granted by the user.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 
-    /**
-     * Método chamado quando a atividade é pausada, pausando o preview da câmera por motivos de
-     * performance.
-     */
-    @Override
-    protected void onPause() {
-        cameraKitView.onPause();
-        super.onPause();
-    }
+    protected boolean allPermissionsGranted() {
 
-    /**
-     * Chamado quando uma foto é tirada. Define o framePreview como visível (foto tirada) e define
-     * o preview da câmera como invisível.
-     */
-    protected void showPreview() {
-        framePreview.setVisibility(View.VISIBLE);
-        cameraKitView.setVisibility(View.GONE);
-    }
-
-    /**
-     * Chamado quando tenta tirar-se uma nova foto. Define o framePreview como invisível (foto tirada) e define
-     * o preview da câmera como visível.
-     */
-    protected void hidePreview() {
-        framePreview.setVisibility(View.GONE);
-        cameraKitView.setVisibility(View.VISIBLE);
+        for (String permission : REQUIRED_PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
     }
 }

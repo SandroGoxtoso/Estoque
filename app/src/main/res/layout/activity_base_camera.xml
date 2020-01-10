@@ -5,38 +5,14 @@
     android:layout_height="match_parent"
     android:background="#333333">
 
-    <com.camerakit.CameraKitView
-        android:id="@+id/cameraView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/framePreview"
+    <TextureView
+        android:id="@+id/view_finder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imagePreview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
-
-        <ImageButton
-            android:id="@+id/btnRetry"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:background="@null"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_refresh" />
-
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnScanCode"
