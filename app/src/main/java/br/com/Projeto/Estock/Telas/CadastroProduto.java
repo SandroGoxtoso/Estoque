@@ -25,7 +25,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.io.File;
 
@@ -52,7 +51,7 @@ public class CadastroProduto extends AppCompatActivity {
 
     private EditText et_nomeProduto, et_qtdProduto, et_valorProduto, btn_lerCodigoBarra;
     private ImageView img_Produto;
-    private Button btn_carregarImagem, btn_carregarCamera, btn_cadastrar;
+    private Button btn_carregarCamera, btn_cadastrar;
     private Uri uri;
     private Activity thisActivity;
     private String nomeImagem;
@@ -115,7 +114,6 @@ public class CadastroProduto extends AppCompatActivity {
         et_valorProduto = findViewById(R.id.et_valorProduto);
         et_qtdProduto = findViewById(R.id.et_qtdProduto);
         img_Produto = findViewById(R.id.img_produto);
-        btn_carregarImagem = findViewById(R.id.btn_carregarImagem);
         btn_carregarCamera = findViewById(R.id.btn_carregarCamera);
         btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
 
@@ -186,19 +184,6 @@ public class CadastroProduto extends AppCompatActivity {
             }
         });
 
-        /*btn_carregarCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                nomeArquivo = Environment.getExternalStorageDirectory() + "/" + System.currentTimeMillis() + ".jpg";
-                File file = new File(nomeArquivo);
-                Uri arquivoFoto = FileProvider.getUriForFile(getApplicationContext(),
-                        getApplicationContext().getPackageName() + ".provider", file);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, arquivoFoto);
-                startActivityForResult(intent, CAMERA_RESULT);
-            }
-        });*/
-
     }
 
     @Override
@@ -220,8 +205,6 @@ public class CadastroProduto extends AppCompatActivity {
         }
         if (requestCode == CAPTURAR_IMAGEM) {
             if (resultCode == RESULT_OK) {
-                ;
-
                 Bitmap thumbnail = (BitmapFactory.decodeFile(nomeImagem));
                 thumbnail = rotationBitMap(thumbnail);
                 img_Produto.setImageBitmap(thumbnail);
@@ -311,6 +294,8 @@ public class CadastroProduto extends AppCompatActivity {
         startActivity(ax);
         overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
+
+
     
 
 }

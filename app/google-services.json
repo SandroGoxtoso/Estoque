@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "879541415894-ni68rfimveqgg7egmrglef734olr94h9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.Projeto.Estock",
+            "certificate_hash": "8d53f5b12fb5f14222dff69e6dfac4a8015a57d5"
+          }
+        },
+        {
           "client_id": "879541415894-f00migi9i4u3675jqq8rri9g2mqv03s9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
