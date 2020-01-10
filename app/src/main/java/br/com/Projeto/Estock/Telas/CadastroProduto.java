@@ -26,6 +26,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import java.io.File;
 
 import br.com.Projeto.Estock.Adapter.Retrato;
@@ -199,7 +202,7 @@ public class CadastroProduto extends AppCompatActivity {
                 String picturePath = c.getString(columnIndex);
                 c.close();
                 Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-                thumbnail = rotationBitMap(thumbnail);
+                //thumbnail = rotationBitMap(thumbnail);
                 img_Produto.setImageBitmap(thumbnail);
             }
         }
@@ -212,6 +215,15 @@ public class CadastroProduto extends AppCompatActivity {
                 adicionarNaGaleria();
             } else {
                 mostrarMensagem("Imagem não capturada!");
+            }
+        }
+        EditText btn_lerCodigoBarra = findViewById(R.id.btn_lerCodigoBarra);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Não foi possível escaner o código!", Toast.LENGTH_SHORT).show();
+            } else {
+                btn_lerCodigoBarra.setText(result.getContents());
             }
         }
 
@@ -295,7 +307,14 @@ public class CadastroProduto extends AppCompatActivity {
         overridePendingTransition(R.anim.fright, R.anim.fhelper2);
     }
 
+    public void scanearCodigo(View view) {
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setCaptureActivity(Retrato.class);
+        intentIntegrator.setOrientationLocked(false);
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        intentIntegrator.setPrompt("");
+        intentIntegrator.initiateScan();
+    }
 
-    
 
 }

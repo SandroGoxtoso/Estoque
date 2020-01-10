@@ -154,10 +154,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_full_2"
-            android:paddingLeft="20dp"
-            android:paddingTop="5dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="5dp" />
+            android:scaleType="fitXY" />
     </LinearLayout>
 
     <LinearLayout
@@ -173,13 +170,14 @@
         <EditText
             android:id="@+id/btn_lerCodigoBarra"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/border_search_box"
             android:drawableRight="@drawable/ic_settings_cell_black_24dp"
             android:fontFamily="@font/roboto_regular"
             android:hint="Código de barra"
+            android:onClick="scanearCodigo"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:textColor="#FFFFFF"
@@ -218,7 +216,7 @@
             android:id="@+id/et_nomeProduto"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="40dp"
@@ -237,7 +235,7 @@
             android:id="@+id/et_qtdProduto"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
@@ -255,7 +253,7 @@
             android:id="@+id/et_valorProduto"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
